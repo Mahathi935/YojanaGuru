@@ -814,14 +814,6 @@ function NavBar({ page, setPage, lang, setLang, user, setUser }) {
           }
         </div>
       </div>
-      {/* Mobile label strip */}
-      <div style={{display:"flex",overflowX:"auto",paddingBottom:4,paddingLeft:16,gap:4,background:"rgba(40,54,24,.92)"}}>
-        {navItems.map(item=>(
-          <button key={item.id} style={{background:page===item.id?"rgba(254,250,224,.2)":"transparent",border:"none",color:"rgba(254,250,224,.92)",padding:"5px 12px",borderRadius:14,fontSize:12,whiteSpace:"nowrap",fontWeight:page===item.id?700:400}} onClick={()=>setPage(item.id)}>
-            {t(lang,item.id)}
-          </button>
-        ))}
-      </div>
     </nav>
   );
 }
@@ -846,14 +838,45 @@ function SchemeCard({ scheme, lang, onClick, eligResult }) {
       <div style={{width:54,height:54,borderRadius:"18px",background:`${scheme.color}22`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:12,marginTop:eligResult?20:0}}>
         <span style={{fontSize:11,fontWeight:600,color:scheme.color,textTransform:"uppercase"}}>{scheme.category}</span>
       </div>
-      <h3 style={{fontSize:14,fontWeight:700,color:"#2d1a0e",marginBottom:4,lineHeight:1.3}}>{getSchemeName(scheme,lang)}</h3>
+      <h3
+        style={{
+          fontSize:14,
+          fontWeight:700,
+          color:"#2d1a0e",
+          marginBottom:6,
+          lineHeight:1.3,
+          background:"#fdf5e8",
+          borderRadius:8,
+          padding:"6px 8px",
+          display:"inline-block",
+          maxWidth:"100%",
+          wordWrap:"break-word"
+        }}
+      >
+        {getSchemeName(scheme,lang)}
+      </h3>
       <p style={{fontSize:12,color:"#7a5c3a",marginBottom:10,lineHeight:1.4}}>{lang==="en"?scheme.tagline:getBenefitSimple(scheme,lang)}</p>
       <div style={{background:"#fdf5e8",borderRadius:8,padding:"7px 10px",borderLeft:`3px solid ${scheme.color}`,marginBottom:10}}>
         <span style={{fontSize:12,color:"#bc6c25",fontWeight:500}}>{lang==="en"?scheme.benefit:getBenefitSimple(scheme,lang)}</span>
       </div>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <span style={{fontSize:11,fontWeight:600,padding:"3px 9px",borderRadius:20,background:`${scheme.color}20`,color:scheme.color}}>{CATEGORIES.find(c=>c.id===scheme.category)?.emoji} {scheme.category}</span>
-        <span style={{fontSize:11,color:"#c4885a",fontWeight:600}}>{t(lang,"tapToLearn")} →</span>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+        <span
+          style={{
+            fontSize:11,
+            fontWeight:600,
+            padding:"4px 10px",
+            borderRadius:20,
+            background:`${scheme.color}20`,
+            color:scheme.color,
+            maxWidth:"70%",
+            display:"inline-block",
+            whiteSpace:"normal",
+            wordWrap:"break-word"
+          }}
+        >
+          {CATEGORIES.find(c=>c.id===scheme.category)?.emoji} {scheme.category}
+        </span>
+        <span style={{fontSize:11,color:"#c4885a",fontWeight:600,flexShrink:0}}>{t(lang,"tapToLearn")} →</span>
       </div>
     </div>
   );
@@ -1122,7 +1145,7 @@ function HomePage({ setPage, lang }) {
             {lang==="ta"?"உங்கள் ஆவணங்களை பதிவேற்றி தகுதியான திட்டங்களை கண்டுபிடியுங்கள்":lang==="hi"?"अपने दस्तावेज़ अपलोड करें और पात्र योजनाएं खोजें":lang==="te"?"మీ పత్రాలు అప్‌లోడ్ చేసి అర్హమైన పథకాలు కనుగొనండి":"Upload your documents once and instantly discover all schemes you qualify for!"}
           </p>
           <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
-            <button style={{background:"#fefae0",color:"#283618",border:"none",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:600,boxShadow:"0 4px 18px rgba(40,54,24,.35)",animation:"softFloat 3s ease-in-out infinite"}} onClick={()=>setPage("uploadDocs")}>
+            <button style={{background:"#fefae0",color:"#283618",border:"none",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:600,boxShadow:"0 4px 18px rgba(40,54,24,.35)"}} onClick={()=>setPage("uploadDocs")}>
               {t(lang,"uploadDocs")}
             </button>
             <button style={{background:"transparent",color:"#fff",border:"2px solid rgba(255,255,255,.65)",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:500}} onClick={()=>setPage("checker")}>
@@ -1148,7 +1171,7 @@ function HomePage({ setPage, lang }) {
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:16}}>
           {quickLinks.map(q=>(
             <button key={q.id} className="ql-card" style={{background:"#fff",borderRadius:16,padding:22,textAlign:"left",border:"1px solid #e3f1f4",cursor:"pointer",transition:"all .25s",boxShadow:"0 2px 12px rgba(0,0,0,.06)",borderTop:`4px solid ${q.color}`}} onClick={()=>setPage(q.id)}>
-              <div style={{width:52,height:52,background:`${q.color}18`,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:12,fontSize:11,fontWeight:600,color:q.color,textTransform:"uppercase"}}>{q.id}</div>
+              <div style={{width:92,height:52,background:`${q.color}18`,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:12,fontSize:11,fontWeight:600,color:q.color,textTransform:"uppercase"}}>{q.id}</div>
               <div style={{fontSize:15,fontWeight:600,color:"#063940",marginBottom:5}}>{q.title}</div>
               <div style={{fontSize:13,color:"#3b6b73"}}>{q.desc}</div>
             </button>
@@ -1175,7 +1198,7 @@ function HomePage({ setPage, lang }) {
 /* ============================================================
    ALL SCHEMES PAGE
    ============================================================ */
-function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile, detectedState }) {
+function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile }) {
   const [search, setSearch] = useState("");
   const [cat, setCat] = useState("all");
   const [stateFilter, setStateFilter] = useState("all");
@@ -1185,40 +1208,38 @@ function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile, detectedSt
     const matchSearch = name.includes(search.toLowerCase())||s.tagline.toLowerCase().includes(search.toLowerCase());
     const matchCat = cat==="all"||s.category===cat;
     const matchState = stateFilter==="all"||(stateFilter==="central"&&s.isCentral)||(stateFilter==="tn"&&s.state==="Tamil Nadu")||(stateFilter==="ap"&&s.state==="Andhra Pradesh")||(stateFilter==="ts"&&s.state==="Telangana");
-    const geoMatch = !detectedState || s.state === detectedState || s.isCentral;
-    return matchSearch&&matchCat&&matchState&&geoMatch;
+    return matchSearch&&matchCat&&matchState;
   });
 
   return (
     <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 20px"}}>
-          {detectedState && (
-      <div style={{
-        background:"#e8f8e8",
-        padding:"10px 16px",
-        borderRadius:"10px",
-        marginBottom:"20px",
-        fontSize:"13px",
-        fontWeight:"600",
-        color:"#2a6a2a"
-      }}>
-        Detected Location: {detectedState} — Showing relevant schemes
-      </div>
-    )}
-
       <div style={{textAlign:"center",marginBottom:26}}>
         <h1 style={{fontSize:26,fontWeight:800,color:"#2d1a0e",fontFamily:"'Baloo 2',sans-serif",marginBottom:6}}>{t(lang,"schemes")}</h1>
         <div style={{maxWidth:540,margin:"0 auto 14px"}}>
           <VoiceSearchBar value={search} onChange={setSearch} lang={lang} placeholder={lang==="ta"?"திட்டங்களை தேடுங்கள்...":lang==="hi"?"योजना खोजें...":lang==="te"?"పథకాలు వెతకండి...":"Search schemes..."}/>
         </div>
-        <div style={{display:"flex",gap:7,justifyContent:"center",flexWrap:"wrap",marginBottom:10}}>
-          {[{id:"all",label:"All"},{id:"central",label:"Central"},{id:"tn",label:"Tamil Nadu"},{id:"ap",label:"Andhra Pradesh"},{id:"ts",label:"Telangana"}].map(f=>(
-            <button key={f.id} style={{padding:"6px 16px",borderRadius:30,border:"2px solid #dda15e",background:stateFilter===f.id?"#bc6c25":"#fff",color:stateFilter===f.id?"#fefae0":"#283618",fontSize:12,fontWeight:600,transition:"all .2s"}} onClick={()=>setStateFilter(f.id)}>{f.label}</button>
-          ))}
-        </div>
-        <div style={{display:"flex",gap:7,justifyContent:"center",flexWrap:"wrap"}}>
-          {CATEGORIES.map(c=>(
-            <button key={c.id} style={{padding:"5px 13px",borderRadius:30,border:"2px solid #dda15e",background:cat===c.id?"#bc6c25":"#fff",color:cat===c.id?"#fefae0":"#283618",fontSize:12,fontWeight:500,whiteSpace:"nowrap",transition:"all .2s"}} onClick={()=>setCat(c.id)}>{c.label}</button>
-          ))}
+        <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap",marginBottom:10}}>
+          <select
+            value={stateFilter}
+            onChange={e=>setStateFilter(e.target.value)}
+            style={{padding:"7px 14px",borderRadius:24,border:"2px solid #dda15e",fontSize:12,fontWeight:600,background:"#fff",color:"#283618",minWidth:160}}
+          >
+            <option value="all">All Regions</option>
+            <option value="central">Central</option>
+            <option value="tn">Tamil Nadu</option>
+            <option value="ap">Andhra Pradesh</option>
+            <option value="ts">Telangana</option>
+          </select>
+          <select
+            value={cat}
+            onChange={e=>setCat(e.target.value)}
+            style={{padding:"7px 14px",borderRadius:24,border:"2px solid #dda15e",fontSize:12,fontWeight:600,background:"#fff",color:"#283618",minWidth:160}}
+          >
+            <option value="all">All Categories</option>
+            {CATEGORIES.map(c=>(
+              <option key={c.id} value={c.id}>{c.label}</option>
+            ))}
+          </select>
         </div>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(270px,1fr))",gap:16}}>
@@ -1744,47 +1765,9 @@ export default function App() {
   const [lang, setLang] = useState("en");
   const [user, setUser] = useState(null);
   const [selectedScheme, setSelectedScheme] = useState(null);
-  const [detectedState, setDetectedState] = useState(null);
   const [matchedSchemes, setMatchedSchemes] = useState([]);
   const [userProfile, setUserProfile] = useState({});
   const { uploadedDocs, markUploaded, markRemoved, hasDoc, uploadedIds } = useDocStore();
-
-  useEffect(() => {
-
-  if (!navigator.geolocation) {
-    console.log("Geolocation not supported");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(async (position) => {
-
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    try {
-
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
-      );
-
-      const data = await response.json();
-
-      const state = data.address.state;
-
-      console.log("Detected State:", state);
-
-      if(state === "Tamil Nadu") setDetectedState("Tamil Nadu");
-      else if(state === "Andhra Pradesh") setDetectedState("Andhra Pradesh");
-      else if(state === "Telangana") setDetectedState("Telangana");
-      else if(state === "Gujarat") setDetectedState("Gujarat");
-
-    } catch(err){
-      console.log("Location detection failed");
-    }
-
-  });
-
-}, []);
 
   const handleResults = (schemes, profile) => {
     setMatchedSchemes(schemes);
@@ -1797,7 +1780,7 @@ export default function App() {
       <NavBar page={page} setPage={setPage} lang={lang} setLang={setLang} user={user} setUser={setUser}/>
       <main style={{minHeight:"80vh"}} className="page-enter" key={page}>
         {page==="home"       && <HomePage setPage={setPage} lang={lang}/>}
-        {page==="schemes"    && <SchemesPage lang={lang} setSelectedScheme={setSelectedScheme} uploadedIds={uploadedIds} profile={userProfile} detectedState={detectedState}/>}
+        {page==="schemes"    && <SchemesPage lang={lang} setSelectedScheme={setSelectedScheme} uploadedIds={uploadedIds} profile={userProfile}/>}
         {page==="checker"    && <CheckerPage lang={lang} setPage={setPage} onResults={handleResults} uploadedIds={uploadedIds}/>}
         {page==="benefits"   && <BenefitsPage lang={lang} matchedSchemes={matchedSchemes} profile={userProfile} setSelectedScheme={setSelectedScheme} setPage={setPage} uploadedIds={uploadedIds}/>}
         {page==="newSchemes" && <NewSchemesPage lang={lang} setSelectedScheme={setSelectedScheme}/>}
