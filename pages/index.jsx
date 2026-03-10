@@ -1150,7 +1150,7 @@ function HomePage({ setPage, lang }) {
 /* ============================================================
    ALL SCHEMES PAGE
    ============================================================ */
-function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile }) {
+function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile, detectedState }) {
   const [search, setSearch] = useState("");
   const [cat, setCat] = useState("all");
   const [stateFilter, setStateFilter] = useState("all");
@@ -1160,11 +1160,26 @@ function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile }) {
     const matchSearch = name.includes(search.toLowerCase())||s.tagline.toLowerCase().includes(search.toLowerCase());
     const matchCat = cat==="all"||s.category===cat;
     const matchState = stateFilter==="all"||(stateFilter==="central"&&s.isCentral)||(stateFilter==="tn"&&s.state==="Tamil Nadu")||(stateFilter==="ap"&&s.state==="Andhra Pradesh")||(stateFilter==="ts"&&s.state==="Telangana");
-    return matchSearch&&matchCat&&matchState;
+    const geoMatch = !detectedState || s.state === detectedState || s.isCentral;
+    return matchSearch&&matchCat&&matchState&&geoMatch;
   });
 
   return (
     <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 20px"}}>
+          {detectedState && (
+      <div style={{
+        background:"#e8f8e8",
+        padding:"10px 16px",
+        borderRadius:"10px",
+        marginBottom:"20px",
+        fontSize:"13px",
+        fontWeight:"600",
+        color:"#2a6a2a"
+      }}>
+        Detected Location: {detectedState} — Showing relevant schemes
+      </div>
+    )}
+
       <div style={{textAlign:"center",marginBottom:26}}>
         <h1 style={{fontSize:26,fontWeight:800,color:"#2d1a0e",fontFamily:"'Baloo 2',sans-serif",marginBottom:6}}>{t(lang,"schemes")}</h1>
         <div style={{maxWidth:540,margin:"0 auto 14px"}}>
@@ -1655,9 +1670,47 @@ export default function App() {
   const [lang, setLang] = useState("en");
   const [user, setUser] = useState(null);
   const [selectedScheme, setSelectedScheme] = useState(null);
+  const [detectedState, setDetectedState] = useState(null);
   const [matchedSchemes, setMatchedSchemes] = useState([]);
   const [userProfile, setUserProfile] = useState({});
   const { uploadedDocs, markUploaded, markRemoved, hasDoc, uploadedIds } = useDocStore();
+
+  useEffect(() => {
+
+  if (!navigator.geolocation) {
+    console.log("Geolocation not supported");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(async (position) => {
+
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    try {
+
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+      );
+
+      const data = await response.json();
+
+      const state = data.address.state;
+
+      console.log("Detected State:", state);
+
+      if(state === "Tamil Nadu") setDetectedState("Tamil Nadu");
+      else if(state === "Andhra Pradesh") setDetectedState("Andhra Pradesh");
+      else if(state === "Telangana") setDetectedState("Telangana");
+      else if(state === "Gujarat") setDetectedState("Gujarat");
+
+    } catch(err){
+      console.log("Location detection failed");
+    }
+
+  });
+
+}, []);
 
   const handleResults = (schemes, profile) => {
     setMatchedSchemes(schemes);
@@ -1670,7 +1723,7 @@ export default function App() {
       <NavBar page={page} setPage={setPage} lang={lang} setLang={setLang} user={user} setUser={setUser}/>
       <main style={{minHeight:"80vh"}} className="page-enter" key={page}>
         {page==="home"       && <HomePage setPage={setPage} lang={lang}/>}
-        {page==="schemes"    && <SchemesPage lang={lang} setSelectedScheme={setSelectedScheme} uploadedIds={uploadedIds} profile={userProfile}/>}
+        {page==="schemes"    && <SchemesPage lang={lang} setSelectedScheme={setSelectedScheme} uploadedIds={uploadedIds} profile={userProfile} detectedState={detectedState}/>}
         {page==="checker"    && <CheckerPage lang={lang} setPage={setPage} onResults={handleResults} uploadedIds={uploadedIds}/>}
         {page==="benefits"   && <BenefitsPage lang={lang} matchedSchemes={matchedSchemes} profile={userProfile} setSelectedScheme={setSelectedScheme} setPage={setPage} uploadedIds={uploadedIds}/>}
         {page==="newSchemes" && <NewSchemesPage lang={lang} setSelectedScheme={setSelectedScheme}/>}
