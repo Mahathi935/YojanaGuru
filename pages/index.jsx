@@ -8,10 +8,10 @@ const GlobalStyles = () => (
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap');
     *{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;font-size:18px;}
-    body{font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:#f3fbff;color:#7a3f44;overflow-x:hidden;}
+    body{font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:#fefae0;color:#283618;overflow-x:hidden;}
     ::-webkit-scrollbar{width:6px;}
-    ::-webkit-scrollbar-track{background:#e0f4f7;}
-    ::-webkit-scrollbar-thumb{background:#d299b1;border-radius:10px;}
+    ::-webkit-scrollbar-track{background:#fefae0;}
+    ::-webkit-scrollbar-thumb{background:#dda15e;border-radius:10px;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
     @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
     @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.04);}}
@@ -21,15 +21,40 @@ const GlobalStyles = () => (
     @keyframes bounce{0%,100%{transform:translateY(0);}40%{transform:translateY(-12px);}60%{transform:translateY(-6px);}}
     @keyframes slideRight{from{width:0}to{width:100%}}
     @keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-    @keyframes subtleGlow{0%,100%{box-shadow:0 0 0 rgba(0,196,204,0)}50%{box-shadow:0 0 18px rgba(0,196,204,.35)}}
+    @keyframes subtleGlow{0%,100%{box-shadow:0 0 0 rgba(188,108,37,0)}50%{box-shadow:0 0 18px rgba(188,108,37,.35)}}
     .fade-up{animation:fadeUp .45s ease both;}
     .page-enter{animation:fadeIn .3s ease both;}
     button{cursor:pointer;font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;}
     input,select,textarea{font-family:'Nunito Sans','Poppins',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;}
     a{text-decoration:none;color:inherit;}
-    .opt-btn:hover{background:#fde4e6!important;border-color:#d299b1!important;transform:translateX(4px);}
+    .opt-btn:hover{background:#fefae0!important;border-color:#dda15e!important;transform:translateX(4px);}
     .scheme-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.14)!important;animation:subtleGlow .9s ease-in-out;}
     .ql-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.12)!important;}
+
+    /* Responsive layout tweaks */
+    @media (max-width: 1024px) {
+      html{font-size:16px;}
+    }
+
+    @media (max-width: 768px) {
+      html{font-size:15px;}
+      nav{padding:0 8px;}
+      .scheme-card{padding:16px;}
+      .ql-card{padding:18px;}
+    }
+
+    @media (max-width: 600px) {
+      html{font-size:14px;}
+      body{overflow-x:hidden;}
+      .scheme-card{border-radius:14px;}
+      .ql-card{border-radius:14px;}
+      .neta-panel{right:16px;bottom:70px;width:90vw;max-width:360px;}
+    }
+
+    @media (max-width: 480px) {
+      html{font-size:13px;}
+      .neta-toggle{right:16px;bottom:16px;}
+    }
   `}</style>
 );
 
@@ -42,7 +67,7 @@ const SCHEMES = [
     id:"TN_001",state:"Tamil Nadu",isNew:false,isCentral:false,
     name:"Kalaignar Magalir Urimai Thogai",
     name_ta:"கலைஞர் மகளிர் உரிமைத் தொகை",name_hi:"कलैञर महिला अधिकार राशि",name_te:"కలైஞர் మహిళా హక్కు నిధి",
-    emoji:"",category:"women",color:"#d299b1",
+    emoji:"",category:"women",color:"#bc6c25",
     tagline:"Monthly money for every woman",
     benefit:"₹1,000 every month straight to your bank account",
     benefit_simple:"Every adult woman in Tamil Nadu gets ₹1,000 every month. Government puts the money directly in your bank. No middleman.",
@@ -64,7 +89,7 @@ const SCHEMES = [
     id:"TN_002",state:"Tamil Nadu",isNew:true,isCentral:false,
     name:"Pudhumai Penn Scheme",
     name_ta:"புதுமைப் பெண் திட்டம்",name_hi:"पुधुमई पेन योजना",name_te:"పుధుమై పెన్ పథకం",
-    emoji:"",category:"education",color:"#d299b1",
+    emoji:"",category:"education",color:"#dda15e",
     tagline:"Education support for girls in college",
     benefit:"₹1,000 every month for girl students studying in college",
     benefit_simple:"If you are a girl studying in college, government gives ₹1,000 every month so you can focus on studies without worry.",
@@ -86,7 +111,7 @@ const SCHEMES = [
     id:"TN_003",state:"Tamil Nadu",isNew:false,isCentral:false,
     name:"Innuyir Kaapom — CM Health Insurance",
     name_ta:"இன்னுயிர் காப்போம்",name_hi:"इन्नुयिर काप्पोम",name_te:"ఇన్నుయిర్ కాప్పోమ్",
-    emoji:"",category:"health",color:"#d299b1",
+    emoji:"",category:"health",color:"#606c38",
     tagline:"Free hospital treatment up to ₹5 lakh",
     benefit:"Free medical treatment up to ₹5 lakh per year at government hospitals",
     benefit_simple:"If you are sick and need expensive treatment or surgery, government pays the full hospital bill — up to ₹5 lakh.",
@@ -108,7 +133,7 @@ const SCHEMES = [
     id:"TN_004",state:"Tamil Nadu",isNew:false,isCentral:false,
     name:"Moovalur Ramamirtham Ammaiyar Scheme",
     name_ta:"மூவலூர் ரామாமிர்தம் அம்மையார் திட்டம்",name_hi:"मूवलूर रामामिर्थम योजना",name_te:"మూవలూర్ రామామిర్థమ్ పథకం",
-    emoji:"",category:"education",color:"#d299b1",
+    emoji:"",category:"education",color:"#dda15e",
     tagline:"Free hostel + cash for SC/ST girls in college",
     benefit:"₹1,000/month + free hostel for SC/ST girl students",
     benefit_simple:"SC and ST girls studying in college get ₹1,000 every month AND free hostel. No rent, no worry.",
@@ -130,7 +155,7 @@ const SCHEMES = [
     id:"TN_005",state:"Tamil Nadu",isNew:false,isCentral:false,
     name:"TN Agricultural Labourers Welfare",
     name_ta:"விவசாய கூலித் தொழிலாளர் நலத்திட்டம்",name_hi:"कृषि मजदूर कल्याण",name_te:"వ్యవసాయ కార్మిక సంక్షేమం",
-    emoji:"",category:"farmer",color:"#d299b1",
+    emoji:"",category:"farmer",color:"#606c38",
     tagline:"Insurance + pension for farm workers",
     benefit:"Accident insurance ₹1 lakh + pension ₹1,500/month after age 60",
     benefit_simple:"Farm workers get accident insurance of ₹1 lakh. After you turn 60, you get ₹1,500 every month as pension.",
@@ -152,7 +177,7 @@ const SCHEMES = [
     id:"TN_006",state:"Tamil Nadu",isNew:false,isCentral:false,
     name:"TNSIM — Crop Insurance",
     name_ta:"தமிழ்நாடு வேளாண் காப்பீட்டு திட்டம்",name_hi:"तमिलनाडु फसल बीमा",name_te:"తమిళనాడు పంట బీమా",
-    emoji:"",category:"farmer",color:"#d299b1",
+    emoji:"",category:"farmer",color:"#606c38",
     tagline:"Get money if your crops fail",
     benefit:"Government pays compensation if crops fail due to flood, drought or pest",
     benefit_simple:"If rain does not come, flood destroys, or insects eat your crops — government gives you money to cover your loss.",
@@ -174,7 +199,7 @@ const SCHEMES = [
     id:"TN_007",state:"Tamil Nadu",isNew:true,isCentral:false,
     name:"Differently Abled Persons Welfare",
     name_ta:"மாற்றுத்திறனாளிகள் நலத்திட்டம்",name_hi:"दिव्यांग कल्याण योजना",name_te:"వికలాంగుల సంక்షేమ పథకం",
-    emoji:"",category:"disability",color:"#d299b1",
+    emoji:"",category:"disability",color:"#bc6c25",
     tagline:"Monthly support and free aids",
     benefit:"₹1,500/month pension + free assistive devices",
     benefit_simple:"Disabled persons get ₹1,500 every month and free wheelchair, hearing aid, or other devices they need.",
@@ -197,7 +222,7 @@ const SCHEMES = [
     id:"AP_001",state:"Andhra Pradesh",isNew:false,isCentral:false,
     name:"YSR Rythu Bharosa",
     name_ta:"YSR ரைது பரோஸா",name_hi:"YSR रायथु भरोसा",name_te:"YSR రైతు భరోసా",
-    emoji:"",category:"farmer",color:"#d299b1",
+    emoji:"",category:"farmer",color:"#606c38",
     tagline:"₹13,500 per year for every farmer in AP",
     benefit:"₹13,500 per year directly to farmers' bank accounts",
     benefit_simple:"Every farmer in Andhra Pradesh gets ₹13,500 every year from the government. The money goes directly to your bank. No need to go anywhere.",
@@ -219,7 +244,7 @@ const SCHEMES = [
     id:"AP_002",state:"Andhra Pradesh",isNew:false,isCentral:false,
     name:"YSR Cheyutha",
     name_ta:"YSR சேயுத",name_hi:"YSR चेयुथा",name_te:"YSR చేయూత",
-    emoji:"",category:"women",color:"#d299b1",
+    emoji:"",category:"women",color:"#bc6c25",
     tagline:"₹18,750/year for BC/SC/ST/minority women",
     benefit:"₹18,750 per year for women from BC, SC, ST and minority communities",
     benefit_simple:"Women from backward and scheduled communities in AP get ₹18,750 every year — about ₹1,562 per month. Straight to your bank account.",
@@ -241,7 +266,7 @@ const SCHEMES = [
     id:"AP_003",state:"Andhra Pradesh",isNew:false,isCentral:false,
     name:"YSR Aarogyasri",
     name_ta:"YSR ஆரோக்யஸ்ரீ",name_hi:"YSR आरोग्यश्री",name_te:"YSR ఆరోగ్యశ్రీ",
-    emoji:"",category:"health",color:"#d299b1",
+    emoji:"",category:"health",color:"#606c38",
     tagline:"Free treatment up to ₹5 lakh at hospitals",
     benefit:"Cashless medical treatment up to ₹5 lakh at government and private hospitals",
     benefit_simple:"Any serious illness or surgery is treated for free at government and many private hospitals in AP. No hospital bill for you — government pays.",
@@ -263,7 +288,7 @@ const SCHEMES = [
     id:"AP_004",state:"Andhra Pradesh",isNew:true,isCentral:false,
     name:"YSR Jagananna Vidya Deevena",
     name_ta:"YSR ஜகன்னா வித்யா தீவேனா",name_hi:"YSR जगनन्ना विद्या दीवेना",name_te:"YSR జగనన్న విద్యా దీవెన",
-    emoji:"",category:"education",color:"#d299b1",
+    emoji:"",category:"education",color:"#dda15e",
     tagline:"100% fee reimbursement for college students",
     benefit:"Full tuition fee paid by government for ITI, polytechnic, degree and PG students",
     benefit_simple:"If your child is studying in college — ITI, polytechnic or degree — government pays the full tuition fee. You pay nothing. Money goes directly to college.",
@@ -285,7 +310,7 @@ const SCHEMES = [
     id:"AP_005",state:"Andhra Pradesh",isNew:false,isCentral:false,
     name:"YSR Pension Kanuka",
     name_ta:"YSR பென்ஷன் கனுகா",name_hi:"YSR पेंशन कनुका",name_te:"YSR పెన్షన్ కానుక",
-    emoji:"",category:"elderly",color:"#d299b1",
+    emoji:"",category:"elderly",color:"#283618",
     tagline:"₹3,000/month pension for elderly and disabled",
     benefit:"₹3,000/month pension for elderly, disabled, widows and weavers in AP",
     benefit_simple:"Old people (60+), disabled persons, and widows in AP get ₹3,000 every month from the government as pension.",
@@ -308,7 +333,7 @@ const SCHEMES = [
     id:"TS_001",state:"Telangana",isNew:false,isCentral:false,
     name:"Rythu Bandhu",
     name_ta:"ரைது பந்து",name_hi:"रायथु बंधु",name_te:"రైతు బంధు",
-    emoji:"",category:"farmer",color:"#d299b1",
+    emoji:"",category:"farmer",color:"#606c38",
     tagline:"₹10,000 per acre per year for farmers",
     benefit:"₹5,000 per acre per season (₹10,000/year) for all farmers in Telangana",
     benefit_simple:"Every farmer in Telangana gets ₹5,000 per acre before each crop season. Government gives this directly to your bank so you can buy seeds and fertilizer.",
@@ -330,7 +355,7 @@ const SCHEMES = [
     id:"TS_002",state:"Telangana",isNew:false,isCentral:false,
     name:"Aasara Pension",
     name_ta:"ஆஸரா பென்ஷன்",name_hi:"आसरा पेंशन",name_te:"ఆసరా పెన్షన్",
-    emoji:"",category:"elderly",color:"#d299b1",
+    emoji:"",category:"elderly",color:"#283618",
     tagline:"Monthly pension for elderly and disabled in Telangana",
     benefit:"₹3,016/month pension for elderly, disabled, widows and toddy tappers",
     benefit_simple:"Poor elderly people (60+), disabled, widows and toddy tappers in Telangana get over ₹3,000 every month as pension.",
@@ -352,7 +377,7 @@ const SCHEMES = [
     id:"TS_003",state:"Telangana",isNew:true,isCentral:false,
     name:"KCR Kit — Maternity Benefit",
     name_ta:"KCR கிட் — மகப்பேறு சலுகை",name_hi:"KCR किट — मातृत्व लाभ",name_te:"KCR కిట్ — ప్రసూతి ప్రయోజనం",
-    emoji:"",category:"women",color:"#d299b1",
+    emoji:"",category:"women",color:"#bc6c25",
     tagline:"Free kit + ₹13,000 cash for pregnant women",
     benefit:"Baby kit with 16 items + ₹13,000 cash for pregnant women in Telangana",
     benefit_simple:"Pregnant women in Telangana get a free kit with all baby items plus ₹13,000 cash — ₹12,000 before birth and ₹1,000 after. Government takes care of mother and baby.",
@@ -374,7 +399,7 @@ const SCHEMES = [
     id:"TS_004",state:"Telangana",isNew:false,isCentral:false,
     name:"TS-RERA Housing for Poor",
     name_ta:"TS-RERA வீட்டு திட்டம்",name_hi:"TS-RERA आवास योजना",name_te:"TS-RERA పేదల ఇల్లు పథకం",
-    emoji:"",category:"housing",color:"#d299b1",
+    emoji:"",category:"housing",color:"#dda15e",
     tagline:"Free 2BHK house for poor in Telangana",
     benefit:"Free 2BHK house (560 sq ft) for urban poor families",
     benefit_simple:"Poor families living in Telangana cities get a free 2-bedroom house from the government. No rent, no loan — it is yours.",
@@ -396,7 +421,7 @@ const SCHEMES = [
     id:"TS_005",state:"Telangana",isNew:true,isCentral:false,
     name:"Telangana SC/ST Education Scholarships",
     name_ta:"தெலங்கானா SC/ST கல்வி உதவித்தொகை",name_hi:"तेलंगाना SC/ST शिक्षा छात्रवृत्ति",name_te:"తెలంగాణ SC/ST విద్యా స్కాలర్‌షిప్",
-    emoji:"",category:"education",color:"#d299b1",
+    emoji:"",category:"education",color:"#dda15e",
     tagline:"Full fee + stipend for SC/ST students",
     benefit:"100% fee reimbursement + ₹1,500/month stipend for SC/ST students",
     benefit_simple:"SC and ST students in Telangana colleges get full fee paid by government plus ₹1,500 every month to spend on food and books.",
@@ -419,7 +444,7 @@ const SCHEMES = [
     id:"CN_001",state:"Central",isNew:false,isCentral:true,
     name:"PM-KISAN Samman Nidhi",
     name_ta:"பிரதம மந்திரி கிசான் சம்மான் நிதி",name_hi:"प्रधानमंत्री किसान सम्मान निधि",name_te:"ప్రధానమంత్రి కిసాన్ సమ్మాన్ నిధి",
-    emoji:"",category:"farmer",color:"#d299b1",
+    emoji:"",category:"farmer",color:"#606c38",
     tagline:"₹6,000 every year for all farmers",
     benefit:"₹6,000 per year in 3 instalments of ₹2,000 directly to bank",
     benefit_simple:"Every farmer gets ₹2,000 three times a year — total ₹6,000. Money comes directly to your bank. No need to ask anyone.",
@@ -441,7 +466,7 @@ const SCHEMES = [
     id:"CN_002",state:"Central",isNew:false,isCentral:true,
     name:"Ayushman Bharat — PMJAY",
     name_ta:"ஆயுஷ்மான் பாரத்",name_hi:"आयुष्मान भारत",name_te:"ఆయుష్మాన్ భారత్",
-    emoji:"",category:"health",color:"#d299b1",
+    emoji:"",category:"health",color:"#606c38",
     tagline:"Big hospital bills paid by government",
     benefit:"Free treatment up to ₹5 lakh per year at empanelled hospitals",
     benefit_simple:"For big surgeries and serious illness, government pays up to ₹5 lakh. Works at many private hospitals too.",
@@ -463,7 +488,7 @@ const SCHEMES = [
     id:"CN_003",state:"Central",isNew:false,isCentral:true,
     name:"PMAY-G — Rural Housing",
     name_ta:"பிரதம மந்திரி ఆవாஸ் யோஜனா (கிரామம்)",name_hi:"प्रधानमंत्री आवास योजना-ग्रामीण",name_te:"ప్రధానమంత్రి గ్రామీణ ఆవాస్ యోజన",
-    emoji:"",category:"housing",color:"#d299b1",
+    emoji:"",category:"housing",color:"#dda15e",
     tagline:"₹1.2 lakh to build your own house",
     benefit:"₹1,20,000 to construct a pucca house in rural areas",
     benefit_simple:"If you live in a mud or thatched house, government gives ₹1.2 lakh to build a proper brick house. You don't repay this money.",
@@ -485,7 +510,7 @@ const SCHEMES = [
     id:"CN_004",state:"Central",isNew:false,isCentral:true,
     name:"Ujjwala 2.0 — Free LPG",
     name_ta:"உஜ்வலா 2.0 யோஜனா",name_hi:"उज्ज्वला 2.0 योजना",name_te:"ఉజ్జ్వల 2.0 యోజన",
-    emoji:"",category:"women",color:"#d299b1",
+    emoji:"",category:"women",color:"#bc6c25",
     tagline:"Free cooking gas connection for women",
     benefit:"Free LPG connection + first cylinder free for poor women",
     benefit_simple:"Women from poor families get a gas cylinder and stove connection for free. No more smoke from firewood. Healthier kitchen for you and your children.",
@@ -505,7 +530,7 @@ const SCHEMES = [
     id:"CN_005",state:"Central",isNew:true,isCentral:true,
     name:"PM Vishwakarma Yojana",
     name_ta:"பிரதம மந்திரி விஸ்வகர்மா யோஜனா",name_hi:"प्रधानमंत्री विश्वकर्मा योजना",name_te:"ప్రధానమంత్రి విశ్వకర్మ యోజన",
-    emoji:"",category:"artisan",color:"#d299b1",
+    emoji:"",category:"artisan",color:"#bc6c25",
     tagline:"Loan + tools + training for craftspeople",
     benefit:"₹3 lakh low-interest loan + free skill training + ₹15,000 for tools",
     benefit_simple:"Carpenters, blacksmiths, potters, tailors — get free training, ₹15,000 for tools, and loan up to ₹3 lakh at low interest.",
@@ -545,7 +570,7 @@ const SCHEMES = [
     id:"CN_007",state:"Central",isNew:false,isCentral:true,
     name:"PM Matru Vandana Yojana",
     name_ta:"பிரதம மந்திரி மாதுர் வந்தனா யோஜனா",name_hi:"प्रधानमंत्री मातृ वंदना योजना",name_te:"ప్రధానమంత్రి మాతృ వందన యోజన",
-    emoji:"",category:"women",color:"#d299b1",
+    emoji:"",category:"women",color:"#bc6c25",
     tagline:"₹5,000 cash for pregnant women",
     benefit:"₹5,000 cash for first pregnancy — for nutrition",
     benefit_simple:"Pregnant for the first time? Government gives ₹5,000 directly to your bank for food and nutrition. Healthy mother, healthy baby.",
@@ -567,7 +592,7 @@ const SCHEMES = [
     id:"CN_008",state:"Central",isNew:false,isCentral:true,
     name:"Old Age Pension — NSAP",
     name_ta:"முதியோர் ஓய்வூதியம்",name_hi:"वृद्धावस्था पेंशन",name_te:"వృద్ధాప్య పెన్షన్",
-    emoji:"",category:"elderly",color:"#d299b1",
+    emoji:"",category:"elderly",color:"#283618",
     tagline:"Monthly pension for senior citizens",
     benefit:"₹200–500/month pension for poor senior citizens aged 60+",
     benefit_simple:"If you are 60 or older and from a poor family, you get ₹200–500 every month as pension. Money comes to your bank or post office.",
@@ -763,36 +788,36 @@ function NavBar({ page, setPage, lang, setLang, user, setUser }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navItems=[{id:"home"},{id:"schemes"},{id:"checker"},{id:"benefits"},{id:"newSchemes"},{id:"uploadDocs"}];
   return (
-    <nav style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",boxShadow:"0 4px 20px rgba(200,120,120,.35)",position:"sticky",top:0,zIndex:100}}>
+    <nav style={{background:"linear-gradient(135deg,#283618,#606c38)",boxShadow:"0 4px 20px rgba(40,54,24,.45)",position:"sticky",top:0,zIndex:100}}>
       <div style={{maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 20px",gap:12}}>
         <div style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer"}} onClick={()=>setPage("home")}>
-          <div style={{fontSize:16,background:"rgba(255,255,255,.15)",borderRadius:"50%",width:44,height:44,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,letterSpacing:1,animation:"softFloat 3s ease-in-out infinite"}}>YG</div>
+          <div style={{fontSize:16,background:"rgba(254,250,224,.2)",borderRadius:"50%",width:44,height:44,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,letterSpacing:1,animation:"softFloat 3s ease-in-out infinite",color:"#fefae0",border:"1px solid rgba(254,250,224,.5)"}}>YG</div>
           <div>
             <div style={{fontSize:18,fontWeight:700,color:"#fff"}}>YojanaGuru</div>
-            <div style={{fontSize:11,color:"rgba(255,255,255,.7)"}}>Yojanas made simple.</div>
+            <div style={{fontSize:11,color:"rgba(254,250,224,.82)"}}>Yojanas made simple.</div>
           </div>
         </div>
         <div style={{display:"flex",gap:3,flexWrap:"wrap"}}>
           {navItems.map(item=>(
-            <button key={item.id} style={{background:page===item.id?"rgba(255,255,255,.22)":"transparent",border:"none",color:page===item.id?"#fff":"rgba(255,255,255,.82)",padding:"6px 11px",borderRadius:18,fontSize:12,fontWeight:600,display:"flex",alignItems:"center",gap:4,transition:"all .2s"}} onClick={()=>setPage(item.id)}>
+            <button key={item.id} style={{background:page===item.id?"rgba(254,250,224,.22)":"transparent",border:"none",color:page===item.id?"#fefae0":"rgba(254,250,224,.82)",padding:"6px 11px",borderRadius:18,fontSize:12,fontWeight:600,display:"flex",alignItems:"center",gap:4,transition:"all .2s"}} onClick={()=>setPage(item.id)}>
               <span>{t(lang,item.id)}</span>
             </button>
           ))}
         </div>
         <div style={{display:"flex",alignItems:"center",gap:8}}>
-          <select style={{background:"rgba(255,255,255,.15)",border:"1px solid rgba(255,255,255,.3)",color:"#fff",padding:"5px 10px",borderRadius:20,fontSize:12,outline:"none"}} value={lang} onChange={e=>setLang(e.target.value)}>
+          <select style={{background:"rgba(254,250,224,.12)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"5px 10px",borderRadius:20,fontSize:12,outline:"none"}} value={lang} onChange={e=>setLang(e.target.value)}>
             {LANG_OPTIONS.map(l=><option key={l.code} value={l.code} style={{color:"#000"}}>{l.label}</option>)}
           </select>
           {user
-            ? <button style={{background:"rgba(255,255,255,.2)",border:"1px solid rgba(255,255,255,.3)",color:"#fff",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setUser(null)}>{t(lang,"logout")}</button>
-            : <button style={{background:"rgba(255,255,255,.2)",border:"1px solid rgba(255,255,255,.3)",color:"#fff",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setPage("login")}>{t(lang,"login")}</button>
+            ? <button style={{background:"rgba(254,250,224,.18)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setUser(null)}>{t(lang,"logout")}</button>
+            : <button style={{background:"rgba(254,250,224,.18)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setPage("login")}>{t(lang,"login")}</button>
           }
         </div>
       </div>
       {/* Mobile label strip */}
-      <div style={{display:"flex",overflowX:"auto",paddingBottom:4,paddingLeft:16,gap:4,background:"rgba(0,0,0,.08)"}}>
+      <div style={{display:"flex",overflowX:"auto",paddingBottom:4,paddingLeft:16,gap:4,background:"rgba(40,54,24,.92)"}}>
         {navItems.map(item=>(
-          <button key={item.id} style={{background:page===item.id?"rgba(255,255,255,.2)":"transparent",border:"none",color:"rgba(255,255,255,.9)",padding:"5px 12px",borderRadius:14,fontSize:12,whiteSpace:"nowrap",fontWeight:page===item.id?700:400}} onClick={()=>setPage(item.id)}>
+          <button key={item.id} style={{background:page===item.id?"rgba(254,250,224,.2)":"transparent",border:"none",color:"rgba(254,250,224,.92)",padding:"5px 12px",borderRadius:14,fontSize:12,whiteSpace:"nowrap",fontWeight:page===item.id?700:400}} onClick={()=>setPage(item.id)}>
             {t(lang,item.id)}
           </button>
         ))}
@@ -824,7 +849,7 @@ function SchemeCard({ scheme, lang, onClick, eligResult }) {
       <h3 style={{fontSize:14,fontWeight:700,color:"#2d1a0e",marginBottom:4,lineHeight:1.3}}>{getSchemeName(scheme,lang)}</h3>
       <p style={{fontSize:12,color:"#7a5c3a",marginBottom:10,lineHeight:1.4}}>{lang==="en"?scheme.tagline:getBenefitSimple(scheme,lang)}</p>
       <div style={{background:"#fdf5e8",borderRadius:8,padding:"7px 10px",borderLeft:`3px solid ${scheme.color}`,marginBottom:10}}>
-        <span style={{fontSize:12,color:"#d299b1",fontWeight:500}}>{lang==="en"?scheme.benefit:getBenefitSimple(scheme,lang)}</span>
+        <span style={{fontSize:12,color:"#bc6c25",fontWeight:500}}>{lang==="en"?scheme.benefit:getBenefitSimple(scheme,lang)}</span>
       </div>
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
         <span style={{fontSize:11,fontWeight:600,padding:"3px 9px",borderRadius:20,background:`${scheme.color}20`,color:scheme.color}}>{CATEGORIES.find(c=>c.id===scheme.category)?.emoji} {scheme.category}</span>
@@ -865,7 +890,7 @@ function SchemeModal({ scheme, lang, onClose, uploadedIds }) {
         <div style={{padding:20}}>
           {/* Eligibility status */}
           {uploadedIds&&uploadedIds.length>0&&(
-            <div style={{background:elig.eligible?"#e8f8e8":"#fff5f5",border:`2px solid ${elig.eligible?"#d299b1":"#e07060"}`,borderRadius:12,padding:"12px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10}}>
+            <div style={{background:elig.eligible?"#fefae0":"#fefae0",border:`2px solid ${elig.eligible?"#606c38":"#bc6c25"}`,borderRadius:12,padding:"12px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10}}>
               <span style={{fontSize:24}}>{elig.eligible?"":""}</span>
               <div>
                 <div style={{fontWeight:700,color:elig.eligible?"#2a6a2a":"#a03030",fontSize:14}}>{elig.eligible?t(lang,"eligible"):t(lang,"notEligible")}</div>
@@ -876,7 +901,7 @@ function SchemeModal({ scheme, lang, onClose, uploadedIds }) {
 
           {/* What you get */}
           <div style={{marginBottom:18}}>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"whatYouGet")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"whatYouGet")}</div>
             <div style={{background:"#fdf5e8",borderRadius:10,padding:"12px 14px",borderLeft:`4px solid ${scheme.color}`}}>
               <p style={{fontSize:15,fontWeight:600,color:"#3d2c1e",lineHeight:1.4}}>{scheme.benefit}</p>
             </div>
@@ -884,19 +909,19 @@ function SchemeModal({ scheme, lang, onClose, uploadedIds }) {
 
           {/* Simple words */}
           <div style={{marginBottom:18}}>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"simpleWords")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"simpleWords")}</div>
             <p style={{fontSize:14,color:"#4a3020",lineHeight:1.7,background:"#fafaf5",borderRadius:10,padding:"12px 14px"}}>{benefitText}</p>
           </div>
 
           {/* Who can apply */}
           <div style={{marginBottom:18}}>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"whoCanApply")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"whoCanApply")}</div>
             <p style={{fontSize:14,color:"#4a3020",lineHeight:1.6}}>{getEligibilityPlain(scheme,lang)}</p>
           </div>
 
           {/* Documents */}
           <div style={{marginBottom:18}}>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"docsNeeded")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"docsNeeded")}</div>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
               {scheme.documents.map((d,i)=>{
                 const docDef = DOC_TYPES.find(dt=>scheme.requiredDocs[i]===dt.id);
@@ -922,7 +947,7 @@ function SchemeModal({ scheme, lang, onClose, uploadedIds }) {
 
           {/* Apply at */}
           <div style={{marginBottom:18}}>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"applyNow")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"applyNow")}</div>
             <div style={{background:"#edf4ff",borderRadius:10,padding:"12px 14px",border:"1px solid #c0d8f0"}}>
               <span style={{fontSize:14,color:"#1a4a8a",fontWeight:500}}>{scheme.apply_at}</span>
             </div>
@@ -930,7 +955,7 @@ function SchemeModal({ scheme, lang, onClose, uploadedIds }) {
 
           {/* Help centres */}
           <div>
-            <div style={{fontSize:12,fontWeight:700,color:"#d299b1",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"helpCenters")}</div>
+            <div style={{fontSize:12,fontWeight:700,color:"#bc6c25",textTransform:"uppercase",letterSpacing:.5,marginBottom:7}}>{t(lang,"helpCenters")}</div>
             <div style={{display:"flex",flexDirection:"column",gap:7}}>
               {scheme.helpCenters.map((c,i)=>(
                 <div key={i} style={{display:"flex",alignItems:"center",gap:10,fontSize:13,color:"#4a3020",background:"#f8f5f0",borderRadius:8,padding:"8px 12px"}}>
@@ -968,7 +993,7 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
   return (
     <div style={{maxWidth:800,margin:"0 auto",padding:"30px 20px"}}>
       {/* Header */}
-      <div style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",borderRadius:20,padding:"28px 24px",marginBottom:28,color:"#fff",textAlign:"center"}}>
+      <div style={{background:"linear-gradient(135deg,#283618,#606c38)",borderRadius:20,padding:"28px 24px",marginBottom:28,color:"#fefae0",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:10}}></div>
         <h1 style={{fontSize:24,fontWeight:800,fontFamily:"'Baloo 2',sans-serif",marginBottom:8}}>{t(lang,"uploadDocs")}</h1>
         <p style={{fontSize:14,opacity:.85,lineHeight:1.6,maxWidth:500,margin:"0 auto 16px"}}>{t(lang,"uploadHint")}</p>
@@ -981,7 +1006,7 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
 
       {/* Progress bar */}
       <div style={{background:"#f0e8dc",borderRadius:10,height:10,marginBottom:28,overflow:"hidden"}}>
-        <div style={{height:"100%",background:"linear-gradient(90deg,#c4885a,#e8a060)",borderRadius:10,width:`${(uploadedCount/DOC_TYPES.length)*100}%`,transition:"width .4s ease"}}/>
+        <div style={{height:"100%",background:"linear-gradient(90deg,#bc6c25,#dda15e)",borderRadius:10,width:`${(uploadedCount/DOC_TYPES.length)*100}%`,transition:"width .4s ease"}}/>
       </div>
 
       {/* Document grid */}
@@ -990,13 +1015,13 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
           const uploaded = !!uploadedDocs[doc.id];
           const isUploading = uploading===doc.id;
           return (
-            <div key={doc.id} style={{background:"#fff",borderRadius:16,padding:18,border:`2px solid ${uploaded?"#5aab72":activeDoc===doc.id?"#c4885a":"#f0e8dc"}`,transition:"all .2s",cursor:"pointer",position:"relative"}}
+            <div key={doc.id} style={{background:"#fff",borderRadius:16,padding:18,border:`2px solid ${uploaded?"#606c38":activeDoc===doc.id?"#bc6c25":"#fefae0"}`,transition:"all .2s",cursor:"pointer",position:"relative"}}
               onClick={()=>setActiveDoc(activeDoc===doc.id?null:doc.id)}>
-              {uploaded&&<div style={{position:"absolute",top:10,right:10,background:"#5aab72",color:"#fff",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700}}>✓</div>}
+              {uploaded&&<div style={{position:"absolute",top:10,right:10,background:"#606c38",color:"#fff",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700}}>✓</div>}
               <div style={{fontSize:32,marginBottom:10}}>{doc.emoji}</div>
               <div style={{fontSize:14,fontWeight:700,color:"#2d1a0e",marginBottom:4}}>{DOC_LABEL(doc,lang)}</div>
               <div style={{fontSize:11,color:"#7a5c3a",marginBottom:12,lineHeight:1.4}}>{doc.hint}</div>
-              {doc.required&&<div style={{fontSize:10,color:"#c4885a",fontWeight:600,marginBottom:8}}>⭐ Required</div>}
+              {doc.required&&<div style={{fontSize:10,color:"#bc6c25",fontWeight:600,marginBottom:8}}>Required</div>}
 
               {isUploading ? (
                 <div style={{background:"#f0f0f0",borderRadius:10,padding:"10px",textAlign:"center",fontSize:12,color:"#7a5c3a"}}>
@@ -1010,7 +1035,7 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
               ) : (
                 <div>
                   <input ref={el=>fileRefs.current[doc.id]=el} type="file" accept="image/*,.pdf" style={{display:"none"}} onChange={e=>handleFileSelect(doc.id,e.target.files[0])}/>
-                  <button style={{width:"100%",background:"linear-gradient(135deg,#fde4e6,#fcdcdc)",border:"2px dashed #d299b1",borderRadius:10,padding:"9px",fontSize:13,fontWeight:600,color:"#d299b1"}}
+                  <button style={{width:"100%",background:"#fefae0",border:"2px dashed #dda15e",borderRadius:10,padding:"9px",fontSize:13,fontWeight:600,color:"#283618"}}
                     onClick={e=>{e.stopPropagation();fileRefs.current[doc.id]?.click();}}>
                     {lang==="ta"?"பதிவேற்று":lang==="hi"?"अपलोड करें":lang==="te"?"అప్‌లోడ్":"Upload"}
                   </button>
@@ -1026,7 +1051,7 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
       </div>
 
       {uploadedCount > 0 && (
-        <div style={{marginTop:28,background:"linear-gradient(135deg,#fde4e6,#fcdcdc)",borderRadius:16,padding:20,border:"2px solid #b0e0b0",textAlign:"center"}}>
+      <div style={{marginTop:28,background:"linear-gradient(135deg,#fefae0,#dda15e)",borderRadius:16,padding:20,border:"2px solid #606c38",textAlign:"center"}}>
           <div style={{fontSize:28,marginBottom:8}}></div>
           <div style={{fontSize:16,fontWeight:700,color:"#2a6a2a",marginBottom:4}}>
             {lang==="ta"?"நல்லது! இப்போது தகுதி சோதிக்கலாம்":lang==="hi"?"बढ़िया! अब पात्रता जांचें":lang==="te"?"చాలా మంచిది! ఇప్పుడు అర్హత తనిఖీ చేయండి":"Great! Now check your eligibility"}
@@ -1073,15 +1098,15 @@ function VoiceSearchBar({ value, onChange, lang, placeholder }) {
 function HomePage({ setPage, lang }) {
   const stats=[{num:"24+",label:"Schemes",emoji:""},{num:"3",label:"States covered",emoji:""},{num:"₹7L+",label:"Max benefit",emoji:""},{num:"Free",label:"No cost",emoji:""}];
   const quickLinks=[
-    {id:"uploadDocs",emoji:"",title:t(lang,"uploadDocs"),desc:"Upload once, check all schemes",color:"#d299b1"},
-    {id:"checker",emoji:"",title:t(lang,"checker"),desc:"Find which schemes you qualify for",color:"#d299b1"},
-    {id:"schemes",emoji:"",title:t(lang,"schemes"),desc:"Browse all available schemes",color:"#d299b1"},
-    {id:"benefits",emoji:"",title:t(lang,"benefits"),desc:"See your matched schemes",color:"#d299b1"},
+    {id:"uploadDocs",emoji:"",title:t(lang,"uploadDocs"),desc:"Upload once, check all schemes",color:"#bc6c25"},
+    {id:"checker",emoji:"",title:t(lang,"checker"),desc:"Find which schemes you qualify for",color:"#dda15e"},
+    {id:"schemes",emoji:"",title:t(lang,"schemes"),desc:"Browse all available schemes",color:"#606c38"},
+    {id:"benefits",emoji:"",title:t(lang,"benefits"),desc:"See your matched schemes",color:"#283618"},
   ];
   return (
     <div>
       {/* Hero */}
-      <div style={{background:"linear-gradient(135deg,#eec7c0 0%,#d4a5a5 50%,#d299b1 100%)",padding:"50px 20px 60px",position:"relative",overflow:"hidden"}}>
+      <div style={{background:"linear-gradient(135deg,#283618 0%,#606c38 45%,#bc6c25 100%)",padding:"50px 20px 60px",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(circle at 20% 80%,rgba(255,200,120,.12) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(200,255,150,.08) 0%,transparent 50%)",pointerEvents:"none"}}/>
         <div style={{maxWidth:700,margin:"0 auto",textAlign:"center",position:"relative"}}>
           <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:14,marginBottom:20}}>
@@ -1097,7 +1122,7 @@ function HomePage({ setPage, lang }) {
             {lang==="ta"?"உங்கள் ஆவணங்களை பதிவேற்றி தகுதியான திட்டங்களை கண்டுபிடியுங்கள்":lang==="hi"?"अपने दस्तावेज़ अपलोड करें और पात्र योजनाएं खोजें":lang==="te"?"మీ పత్రాలు అప్‌లోడ్ చేసి అర్హమైన పథకాలు కనుగొనండి":"Upload your documents once and instantly discover all schemes you qualify for!"}
           </p>
           <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
-            <button style={{background:"#fde4e6",color:"#eec7c0",border:"none",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:600,boxShadow:"0 4px 18px rgba(200,120,120,.25)",animation:"softFloat 3s ease-in-out infinite"}} onClick={()=>setPage("uploadDocs")}>
+            <button style={{background:"#fefae0",color:"#283618",border:"none",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:600,boxShadow:"0 4px 18px rgba(40,54,24,.35)",animation:"softFloat 3s ease-in-out infinite"}} onClick={()=>setPage("uploadDocs")}>
               {t(lang,"uploadDocs")}
             </button>
             <button style={{background:"transparent",color:"#fff",border:"2px solid rgba(255,255,255,.65)",padding:"13px 28px",borderRadius:50,fontSize:15,fontWeight:500}} onClick={()=>setPage("checker")}>
@@ -1110,7 +1135,7 @@ function HomePage({ setPage, lang }) {
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",background:"#fff",boxShadow:"0 4px 20px rgba(0,0,0,.08)"}}>
         {stats.map((s,i)=>(
           <div key={i} style={{padding:"18px 14px",textAlign:"center",borderRight:"1px solid #e3f1f4"}}>
-            <div style={{fontSize:20,fontWeight:700,color:"#eec7c0"}}>{s.num}</div>
+            <div style={{fontSize:20,fontWeight:700,color:"#dda15e"}}>{s.num}</div>
             <div style={{fontSize:11,color:"#3b6b73",fontWeight:500,marginTop:4}}>{s.label}</div>
           </div>
         ))}
@@ -1131,8 +1156,8 @@ function HomePage({ setPage, lang }) {
         </div>
       </div>
       {/* Voice tip */}
-      <div style={{background:"linear-gradient(135deg,#ffe8ea,#fde4e6)",margin:"0 20px 40px",borderRadius:16,padding:"18px 22px",display:"flex",alignItems:"center",gap:16,border:"1px solid #f1d8d8",maxWidth:1060,marginLeft:"auto",marginRight:"auto"}}>
-        <div style={{width:40,height:40,borderRadius:"50%",border:"2px solid #d4a5a5",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,color:"#d4a5a5",animation:"pulse 2.4s ease-in-out infinite"}}>
+      <div style={{background:"linear-gradient(135deg,#fefae0,#dda15e)",margin:"0 20px 40px",borderRadius:16,padding:"18px 22px",display:"flex",alignItems:"center",gap:16,border:"1px solid #dda15e",maxWidth:1060,marginLeft:"auto",marginRight:"auto"}}>
+        <div style={{width:40,height:40,borderRadius:"50%",border:"2px solid #bc6c25",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,color:"#bc6c25",animation:"pulse 2.4s ease-in-out infinite"}}>
         </div>
         <div>
           <div style={{fontSize:15,fontWeight:600,color:"#063940",marginBottom:3}}>
@@ -1172,12 +1197,12 @@ function SchemesPage({ lang, setSelectedScheme, uploadedIds, profile }) {
         </div>
         <div style={{display:"flex",gap:7,justifyContent:"center",flexWrap:"wrap",marginBottom:10}}>
           {[{id:"all",label:"All"},{id:"central",label:"Central"},{id:"tn",label:"Tamil Nadu"},{id:"ap",label:"Andhra Pradesh"},{id:"ts",label:"Telangana"}].map(f=>(
-            <button key={f.id} style={{padding:"6px 16px",borderRadius:30,border:"2px solid #e8d0b0",background:stateFilter===f.id?"#d299b1":"#fff",color:stateFilter===f.id?"#fff":"#d299b1",fontSize:12,fontWeight:600,transition:"all .2s"}} onClick={()=>setStateFilter(f.id)}>{f.label}</button>
+            <button key={f.id} style={{padding:"6px 16px",borderRadius:30,border:"2px solid #dda15e",background:stateFilter===f.id?"#bc6c25":"#fff",color:stateFilter===f.id?"#fefae0":"#283618",fontSize:12,fontWeight:600,transition:"all .2s"}} onClick={()=>setStateFilter(f.id)}>{f.label}</button>
           ))}
         </div>
         <div style={{display:"flex",gap:7,justifyContent:"center",flexWrap:"wrap"}}>
           {CATEGORIES.map(c=>(
-            <button key={c.id} style={{padding:"5px 13px",borderRadius:30,border:"2px solid #e8d0b0",background:cat===c.id?"#d299b1":"#fff",color:cat===c.id?"#fff":"#d299b1",fontSize:12,fontWeight:500,whiteSpace:"nowrap",transition:"all .2s"}} onClick={()=>setCat(c.id)}>{c.label}</button>
+            <button key={c.id} style={{padding:"5px 13px",borderRadius:30,border:"2px solid #dda15e",background:cat===c.id?"#bc6c25":"#fff",color:cat===c.id?"#fefae0":"#283618",fontSize:12,fontWeight:500,whiteSpace:"nowrap",transition:"all .2s"}} onClick={()=>setCat(c.id)}>{c.label}</button>
           ))}
         </div>
       </div>
@@ -1252,7 +1277,7 @@ function CheckerPage({ lang, setPage, onResults, uploadedIds }) {
     const {matched} = results;
     return (
       <div style={{maxWidth:800,margin:"0 auto",padding:"28px 20px"}}>
-        <div style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",borderRadius:20,padding:"28px 22px",textAlign:"center",color:"#fff",marginBottom:22}}>
+      <div style={{background:"linear-gradient(135deg,#283618,#606c38)",borderRadius:20,padding:"28px 22px",textAlign:"center",color:"#fefae0",marginBottom:22}}>
           <div style={{fontSize:48,marginBottom:8,animation:"bounce 1s ease"}}></div>
           <h2 style={{fontSize:22,fontWeight:800,fontFamily:"'Baloo 2',sans-serif",marginBottom:8}}>
             {lang==="ta"?`${matched.length} திட்டங்கள் கண்டுபிடிக்கப்பட்டன!`:lang==="hi"?`${matched.length} योजनाएं मिलीं!`:lang==="te"?`${matched.length} పథకాలు కనుగొనబడ్డాయి!`:`${matched.length} Schemes Found For You!`}
@@ -1288,8 +1313,8 @@ function CheckerPage({ lang, setPage, onResults, uploadedIds }) {
           {matched.length===0&&<div style={{textAlign:"center",padding:40,color:"#7a5c3a",fontSize:14}}>No exact matches. Please visit your nearest Gram Panchayat for guidance.</div>}
         </div>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-          <button style={{flex:1,padding:"13px",background:"#fff",border:"2px solid #d299b1",color:"#d299b1",borderRadius:12,fontSize:14,fontWeight:600}} onClick={reset}>{lang==="ta"?"மீண்டும்":lang==="hi"?"फिर से":lang==="te"?"మళ్ళీ":"Check Again"}</button>
-          <button style={{flex:1,padding:"13px",background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",borderRadius:12,fontSize:14,fontWeight:600}} onClick={()=>setPage("benefits")}>{t(lang,"benefits")}</button>
+          <button style={{flex:1,padding:"13px",background:"#fff",border:"2px solid #bc6c25",color:"#bc6c25",borderRadius:12,fontSize:14,fontWeight:600}} onClick={reset}>{lang==="ta"?"மீண்டும்":lang==="hi"?"फिर से":lang==="te"?"మళ్ళీ":"Check Again"}</button>
+          <button style={{flex:1,padding:"13px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",borderRadius:12,fontSize:14,fontWeight:600}} onClick={()=>setPage("benefits")}>{t(lang,"benefits")}</button>
         </div>
       </div>
     );
@@ -1306,7 +1331,7 @@ function CheckerPage({ lang, setPage, onResults, uploadedIds }) {
       <div style={{background:"#fff",borderRadius:24,padding:"28px 24px",boxShadow:"0 8px 40px rgba(0,0,0,.1)"}}>
         <div style={{marginBottom:24}}>
           <div style={{height:8,background:"#f0e8dc",borderRadius:10,overflow:"hidden",marginBottom:6}}>
-            <div style={{height:"100%",background:"linear-gradient(90deg,#c4885a,#e8a060)",borderRadius:10,width:`${progress}%`,transition:"width .4s ease"}}/>
+        <div style={{height:"100%",background:"linear-gradient(90deg,#bc6c25,#dda15e)",borderRadius:10,width:`${progress}%`,transition:"width .4s ease"}}/>
           </div>
           <span style={{fontSize:12,color:"#7a5c3a",fontWeight:500}}>{lang==="ta"?`கேள்வி ${step+1}/${questions.length}`:lang==="hi"?`प्रश्न ${step+1}/${questions.length}`:lang==="te"?`ప్రశ్న ${step+1}/${questions.length}`:`Question ${step+1} of ${questions.length}`}</span>
         </div>
@@ -1321,7 +1346,7 @@ function CheckerPage({ lang, setPage, onResults, uploadedIds }) {
             <button key={opt.v} className="opt-btn" style={{background:"#fff",border:"2px solid #e8d0b0",borderRadius:12,padding:"13px 16px",fontSize:15,fontWeight:500,color:"#2d1a0e",textAlign:"left",display:"flex",alignItems:"center",justifyContent:"space-between",transition:"all .2s",animationDelay:`${i*0.06}s`}}
               onClick={()=>answer(q.id,opt.v)}>
               <span>{opt.l[lang]||opt.l.en}</span>
-              <span style={{color:"#c4885a",fontWeight:700}}>→</span>
+              <span style={{color:"#bc6c25",fontWeight:700}}>→</span>
             </button>
           ))}
         </div>
@@ -1341,7 +1366,7 @@ function BenefitsPage({ lang, matchedSchemes, profile, setSelectedScheme, setPag
         <span style={{fontSize:64}}></span>
         <h2 style={{fontSize:22,fontWeight:800,color:"#2d1a0e",fontFamily:"'Baloo 2',sans-serif",margin:"16px 0 10px"}}>{t(lang,"checker")}</h2>
         <p style={{fontSize:14,color:"#7a5c3a",marginBottom:24,lineHeight:1.6}}>Complete the eligibility checker to see your matched schemes here</p>
-        <button style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",padding:"14px 32px",borderRadius:50,fontSize:15,fontWeight:700}} onClick={()=>setPage("checker")}>{t(lang,"checker")}</button>
+        <button style={{background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",padding:"14px 32px",borderRadius:50,fontSize:15,fontWeight:700}} onClick={()=>setPage("checker")}>{t(lang,"checker")}</button>
       </div>
     );
   }
@@ -1351,7 +1376,7 @@ function BenefitsPage({ lang, matchedSchemes, profile, setSelectedScheme, setPag
 
   return (
     <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 20px"}}>
-      <div style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",borderRadius:20,padding:"28px 22px",textAlign:"center",color:"#fff",marginBottom:26}}>
+      <div style={{background:"linear-gradient(135deg,#283618,#606c38)",borderRadius:20,padding:"28px 22px",textAlign:"center",color:"#fefae0",marginBottom:26}}>
         <div style={{fontSize:48,marginBottom:8}}></div>
         <h1 style={{fontSize:26,fontWeight:800,fontFamily:"'Baloo 2',sans-serif",marginBottom:6}}>{t(lang,"benefits")}</h1>
         <p style={{fontSize:15,opacity:.85,marginBottom:10}}>{matchedSchemes.length} {lang==="ta"?"திட்டங்கள் தகுதி":lang==="hi"?"योजनाएं मिलीं":lang==="te"?"పథకాలు అర్హత":"schemes found for you"}</p>
@@ -1459,33 +1484,33 @@ function LoginPage({ setUser, setPage, lang }) {
       <div style={{background:"#fff",borderRadius:24,padding:"34px 30px",width:"100%",maxWidth:400,boxShadow:"0 12px 50px rgba(0,0,0,.12)"}}>
         <div style={{display:"flex",alignItems:"center",gap:10,justifyContent:"center",marginBottom:18}}>
           <div style={{fontSize:32,background:"linear-gradient(135deg,#f0d8b0,#e0b870)",borderRadius:"50%",width:52,height:52,display:"flex",alignItems:"center",justifyContent:"center"}}></div>
-          <div style={{fontSize:20,fontWeight:800,color:"#d299b1",fontFamily:"'Baloo 2',sans-serif"}}>YojanaGuru</div>
+          <div style={{fontSize:20,fontWeight:800,color:"#283618",fontFamily:"'Baloo 2',sans-serif"}}>YojanaGuru</div>
         </div>
         <h2 style={{fontSize:20,fontWeight:800,color:"#2d1a0e",textAlign:"center",marginBottom:5,fontFamily:"'Baloo 2',sans-serif"}}>{lang==="ta"?"உள்நுழைவு":lang==="hi"?"लॉगिन करें":lang==="te"?"లాగిన్":"Login / Sign Up"}</h2>
         <p style={{fontSize:13,color:"#7a5c3a",textAlign:"center",marginBottom:18}}>Save your schemes and track applications</p>
         <div style={{display:"flex",background:"#f0e8dc",borderRadius:30,padding:4,marginBottom:20}}>
           {["login","signup"].map(m=>(
-            <button key={m} style={{flex:1,padding:"9px",borderRadius:26,border:"none",fontSize:13,fontWeight:mode===m?700:500,color:"#d299b1",background:mode===m?"#fff":"transparent",boxShadow:mode===m?"0 2px 8px rgba(0,0,0,.1)":"none",transition:"all .2s"}} onClick={()=>setMode(m)}>
+            <button key={m} style={{flex:1,padding:"9px",borderRadius:26,border:"none",fontSize:13,fontWeight:mode===m?700:500,color:"#283618",background:mode===m?"#fff":"transparent",boxShadow:mode===m?"0 2px 8px rgba(0,0,0,.1)":"none",transition:"all .2s"}} onClick={()=>setMode(m)}>
               {m==="login"?"Login":"Sign Up"}
             </button>
           ))}
         </div>
         {mode==="signup"&&step===1&&(
           <div style={{marginBottom:14}}>
-            <label style={{fontSize:13,fontWeight:600,color:"#d299b1",display:"block",marginBottom:5}}>Your Name</label>
+            <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Your Name</label>
             <input style={{width:"100%",padding:"11px 13px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:14,outline:"none",background:"#faf5ee"}} value={name} onChange={e=>setName(e.target.value)} placeholder="Enter your name"/>
           </div>
         )}
         {step===1&&(
           <>
             <div style={{marginBottom:14}}>
-              <label style={{fontSize:13,fontWeight:600,color:"#d299b1",display:"block",marginBottom:5}}>Mobile Number</label>
+              <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Mobile Number</label>
               <div style={{display:"flex",gap:8}}>
-                <span style={{background:"#f0e8dc",border:"2px solid #e8d0b0",borderRadius:10,padding:"11px 13px",fontSize:13,fontWeight:600,color:"#d299b1",whiteSpace:"nowrap"}}>+91</span>
+                <span style={{background:"#fefae0",border:"2px solid #dda15e",borderRadius:10,padding:"11px 13px",fontSize:13,fontWeight:600,color:"#283618",whiteSpace:"nowrap"}}>+91</span>
                 <input style={{flex:1,padding:"11px 13px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:14,outline:"none",background:"#faf5ee"}} value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,"").slice(0,10))} placeholder="10-digit number" type="tel"/>
               </div>
             </div>
-            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700,marginTop:4}} onClick={handleSendOtp} disabled={loading}>
+            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700,marginTop:4}} onClick={handleSendOtp} disabled={loading}>
               {loading?<span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⏳</span>:"Send OTP"}
             </button>
           </>
@@ -1493,11 +1518,11 @@ function LoginPage({ setUser, setPage, lang }) {
         {step===2&&(
           <>
             <div style={{marginBottom:14}}>
-              <label style={{fontSize:13,fontWeight:600,color:"#d299b1",display:"block",marginBottom:5}}>Enter OTP</label>
+              <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Enter OTP</label>
               <p style={{fontSize:11,color:"#7a5c3a",marginBottom:6}}>+91 {phone} (Demo: any 4 digits)</p>
               <input style={{width:"100%",padding:"12px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:22,outline:"none",background:"#faf5ee",textAlign:"center",letterSpacing:8}} value={otp} onChange={e=>setOtp(e.target.value.slice(0,4))} placeholder="• • • •" type="tel"/>
             </div>
-            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700}} onClick={handleVerify} disabled={loading}>
+            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700}} onClick={handleVerify} disabled={loading}>
               {loading?<span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⏳</span>:"Verify & Login"}
             </button>
           </>
@@ -1524,7 +1549,7 @@ States covered: Tamil Nadu, Andhra Pradesh, Telangana + Central Government.
 
 Always tell users they can use voice search by pressing the mic button. Always remind them to upload their documents first at the "Upload Documents" page for automatic eligibility checking.`;
 
-function NetaJiChat({ lang }) {
+function NetaJiChat({ lang, page, setPage, uploadedIdsCount }) {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState([]);
   const [input, setInput] = useState("");
@@ -1546,8 +1571,45 @@ function NetaJiChat({ lang }) {
     setLoading(false);
   };
 
+  const go = (target) => {
+    setPage?.(target);
+    setOpen(false);
+  };
+
+  const GuideActions = () => {
+    const needsDocs = (uploadedIdsCount||0) === 0;
+    const primary = needsDocs ? "uploadDocs" : "checker";
+    return (
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginTop:10}}>
+        <button onClick={()=>go(primary)} style={{gridColumn:"1 / -1",padding:"10px 12px",borderRadius:12,border:"none",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",fontSize:13,fontWeight:600}}>
+          {needsDocs ? "Start here: Upload Documents" : "Start here: Check Eligibility"}
+        </button>
+        <button onClick={()=>go("schemes")} style={{padding:"10px 12px",borderRadius:12,border:"1px solid #dda15e",background:"#fff",color:"#283618",fontSize:13,fontWeight:600}}>
+          Browse Schemes
+        </button>
+        <button onClick={()=>go("newSchemes")} style={{padding:"10px 12px",borderRadius:12,border:"1px solid #dda15e",background:"#fff",color:"#283618",fontSize:13,fontWeight:600}}>
+          New Schemes
+        </button>
+        <button onClick={()=>go("benefits")} style={{padding:"10px 12px",borderRadius:12,border:"1px solid #dda15e",background:"#fff",color:"#283618",fontSize:13,fontWeight:600}}>
+          My Benefits
+        </button>
+        <button onClick={()=>go("home")} style={{padding:"10px 12px",borderRadius:12,border:"1px solid #dda15e",background:"#fff",color:"#283618",fontSize:13,fontWeight:600}}>
+          Home
+        </button>
+      </div>
+    );
+  };
+
   const send = async (msg) => {
     if(!msg.trim()||loading) return;
+    const m = msg.toLowerCase();
+    // Simple non-tech navigation intents
+    if(m.includes("upload")||m.includes("document")||m.includes("docs")) { go("uploadDocs"); return; }
+    if(m.includes("eligible")||m.includes("eligibility")||m.includes("check")) { go("checker"); return; }
+    if(m.includes("benefit")||m.includes("my schemes")||m.includes("matched")) { go("benefits"); return; }
+    if(m.includes("new")) { go("newSchemes"); return; }
+    if(m.includes("all schemes")||m.includes("schemes")||m.includes("browse")) { go("schemes"); return; }
+    if(m.includes("home")) { go("home"); return; }
     const newMsgs=[...msgs,{role:"user",content:msg}];
     setMsgs(newMsgs); setInput(""); setLoading(true);
     try {
@@ -1574,35 +1636,46 @@ function NetaJiChat({ lang }) {
 
   return (
     <>
-      <button style={{position:"fixed",bottom:24,right:24,zIndex:150,background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",borderRadius:50,padding:"12px 18px",display:"flex",alignItems:"center",gap:8,boxShadow:"0 6px 24px rgba(0,118,119,.4)",fontSize:14,fontWeight:600,animation:open?"none":"pulse 2.5s ease infinite"}}
+      <button className="neta-toggle" style={{position:"fixed",bottom:24,right:24,zIndex:150,background:"linear-gradient(135deg,#283618,#606c38)",color:"#fefae0",border:"none",borderRadius:50,padding:"12px 18px",display:"flex",alignItems:"center",gap:8,boxShadow:"0 6px 24px rgba(40,54,24,.45)",fontSize:14,fontWeight:600,animation:open?"none":"pulse 2.5s ease infinite"}}
         onClick={()=>{setOpen(!open);if(!open&&!started)startChat();}}>
-        <span style={{fontSize:20}}></span>
+        <span style={{fontSize:20}}>🧑‍💼</span>
         {!open&&<span>Neta Ji</span>}
       </button>
       {open&&(
-        <div style={{position:"fixed",bottom:78,right:24,zIndex:150,width:340,maxHeight:500,background:"#fff",borderRadius:20,boxShadow:"0 16px 60px rgba(0,0,0,.2)",display:"flex",flexDirection:"column",animation:"fadeUp .3s ease"}}>
-          <div style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",padding:"12px 14px",borderRadius:"20px 20px 0 0",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div className="neta-panel" style={{position:"fixed",bottom:78,right:24,zIndex:150,width:340,maxHeight:500,background:"#fff",borderRadius:20,boxShadow:"0 16px 60px rgba(0,0,0,.2)",display:"flex",flexDirection:"column",animation:"fadeUp .3s ease"}}>
+          <div style={{background:"linear-gradient(135deg,#283618,#606c38)",padding:"12px 14px",borderRadius:"20px 20px 0 0",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
             <div style={{display:"flex",alignItems:"center",gap:9}}>
-              <span style={{fontSize:24,background:"rgba(255,255,255,.15)",borderRadius:"50%",width:38,height:38,display:"flex",alignItems:"center",justifyContent:"center"}}></span>
+              <span style={{fontSize:24,background:"rgba(254,250,224,.22)",borderRadius:"50%",width:38,height:38,display:"flex",alignItems:"center",justifyContent:"center"}}>🧑‍💼</span>
               <div>
                 <div style={{fontSize:14,fontWeight:700,color:"#fff"}}>Neta Ji</div>
-                <div style={{fontSize:11,color:"rgba(255,255,255,.7)",display:"flex",alignItems:"center",gap:4}}><span style={{width:6,height:6,borderRadius:"50%",background:"#7fff6a",display:"inline-block"}}/>Your Guide</div>
+                <div style={{fontSize:11,color:"rgba(254,250,224,.92)",display:"flex",alignItems:"center",gap:4}}><span style={{width:6,height:6,borderRadius:"50%",background:"#7fff6a",display:"inline-block"}}/>Your Guide</div>
               </div>
             </div>
             <button style={{background:"rgba(255,255,255,.2)",border:"none",color:"#fff",width:28,height:28,borderRadius:"50%",fontSize:13}} onClick={()=>setOpen(false)}>✕</button>
           </div>
-          <div style={{flex:1,overflowY:"auto",padding:13,display:"flex",flexDirection:"column",gap:9,background:"#faf6f0"}}>
+          <div style={{flex:1,overflowY:"auto",padding:13,display:"flex",flexDirection:"column",gap:9,background:"#fefae0"}}>
             {!started&&(
-              <div style={{textAlign:"center",padding:"18px 8px"}}>
-                <span style={{fontSize:36}}></span>
-                <p style={{fontSize:13,color:"#d299b1",lineHeight:1.6,margin:"10px 0"}}>Ask me about any scheme, or let me guide you through the website!</p>
-                <button style={{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",padding:"9px 20px",borderRadius:30,fontSize:13,fontWeight:600}} onClick={startChat}>Lets Chat! →</button>
+              <div style={{textAlign:"left",padding:"14px 10px"}}>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+                  <span style={{fontSize:28}}>🧑‍💼</span>
+                  <div>
+                  <div style={{fontSize:14,fontWeight:700,color:"#283618"}}>Neta Ji will guide you</div>
+                  <div style={{fontSize:12,color:"#606c38",marginTop:2}}>Just tap a button below. No typing needed.</div>
+                  </div>
+                </div>
+                <div style={{fontSize:12,color:"#bc6c25",lineHeight:1.6}}>
+                  {(uploadedIdsCount||0) > 0 ? "I can take you to the right page and help you finish the steps." : "First we upload your documents once. Then I will check all schemes automatically."}
+                </div>
+                <GuideActions/>
+                <button style={{marginTop:10,width:"100%",background:"transparent",color:"#283618",border:"1px solid #dda15e",padding:"9px 12px",borderRadius:12,fontSize:13,fontWeight:600}} onClick={startChat}>
+                  Or chat with Neta Ji
+                </button>
               </div>
             )}
             {msgs.map((m,i)=>(
               <div key={i} style={{display:"flex",alignItems:"flex-end",gap:6,justifyContent:m.role==="user"?"flex-end":"flex-start"}}>
-                {m.role==="assistant"&&<span style={{fontSize:20,background:"#f0e0c8",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}></span>}
-                <div style={{maxWidth:"78%",padding:"9px 12px",borderRadius:14,fontSize:13,lineHeight:1.5,whiteSpace:"pre-wrap",wordBreak:"break-word",animation:"fadeUp .3s ease",...(m.role==="user"?{background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",borderBottomRightRadius:4}:{background:"#fff",color:"#2d1a0e",borderBottomLeftRadius:4,boxShadow:"0 2px 8px rgba(0,0,0,.07)",border:"1px solid rgba(200,180,160,.3)"})}}>{m.content}</div>
+                {m.role==="assistant"&&<span style={{fontSize:20,background:"#fefae0",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>🧑‍💼</span>}
+                <div style={{maxWidth:"78%",padding:"9px 12px",borderRadius:14,fontSize:13,lineHeight:1.5,whiteSpace:"pre-wrap",wordBreak:"break-word",animation:"fadeUp .3s ease",...(m.role==="user"?{background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",borderBottomRightRadius:4}:{background:"#fff",color:"#283618",borderBottomLeftRadius:4,boxShadow:"0 2px 8px rgba(0,0,0,.07)",border:"1px solid rgba(221,161,94,.55)"})}}>{m.content}</div>
               </div>
             ))}
             {loading&&(
@@ -1613,6 +1686,7 @@ function NetaJiChat({ lang }) {
                 </div>
               </div>
             )}
+            {started && !loading && <div style={{marginTop:6}}><GuideActions/></div>}
             <div ref={chatEndRef}/>
           </div>
           <div style={{display:"flex",gap:6,padding:"9px 11px",background:"#fff",borderTop:"1px solid #f0e0c8",borderRadius:"0 0 20px 20px"}}>
@@ -1620,7 +1694,7 @@ function NetaJiChat({ lang }) {
             <button style={{width:34,height:34,borderRadius:"50%",border:listening?"2px solid #e05050":"2px solid #e8c898",background:listening?"#ffe0e0":"#fdf0e0",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}} onClick={startVoice}>
               {listening?"":""}
             </button>
-            <button style={{width:34,height:34,borderRadius:"50%",background:"linear-gradient(135deg,#eec7c0,#d4a5a5)",color:"#fff",border:"none",fontSize:15,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>send(input)} disabled={loading}>➤</button>
+            <button style={{width:34,height:34,borderRadius:"50%",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",fontSize:15,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>send(input)} disabled={loading}>➤</button>
           </div>
         </div>
       )}
@@ -1679,7 +1753,7 @@ export default function App() {
       </main>
       <Footer/>
       <SchemeModal scheme={selectedScheme} lang={lang} onClose={()=>setSelectedScheme(null)} uploadedIds={uploadedIds}/>
-      <NetaJiChat lang={lang}/>
+      <NetaJiChat lang={lang} page={page} setPage={setPage} uploadedIdsCount={uploadedIds.length}/>
     </div>
   );
 }
