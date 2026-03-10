@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { VillageHelperMode } from "../VillageHelperMode";
 
 /* ============================================================
    GLOBAL STYLES
@@ -784,7 +785,7 @@ function checkEligibility(scheme, profile, uploadedIds) {
 /* ============================================================
    NAV BAR
    ============================================================ */
-function NavBar({ page, setPage, lang, setLang, user, setUser }) {
+function NavBar({ page, setPage, lang, setLang, user, setUser, setLoginMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navItems=[{id:"home"},{id:"schemes"},{id:"checker"},{id:"benefits"},{id:"newSchemes"},{id:"uploadDocs"}];
   return (
@@ -810,7 +811,15 @@ function NavBar({ page, setPage, lang, setLang, user, setUser }) {
           </select>
           {user
             ? <button style={{background:"rgba(254,250,224,.18)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setUser(null)}>{t(lang,"logout")}</button>
-            : <button style={{background:"rgba(254,250,224,.18)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"6px 13px",borderRadius:20,fontSize:12}} onClick={()=>setPage("login")}>{t(lang,"login")}</button>
+            : <button
+                style={{background:"rgba(254,250,224,.18)",border:"1px solid rgba(254,250,224,.4)",color:"#fefae0",padding:"6px 13px",borderRadius:20,fontSize:12}}
+                onClick={()=>{
+                  setLoginMode(null);
+                  setPage("login");
+                }}
+              >
+                {t(lang,"login")}
+              </button>
           }
         </div>
       </div>
@@ -1572,6 +1581,90 @@ function LoginPage({ setUser, setPage, lang }) {
 }
 
 /* ============================================================
+   LOGIN MODE SELECTION (SELF vs HELPER)
+   ============================================================ */
+function LoginModePage({ onSelect }) {
+  const cards = [
+    {
+      id:"self",
+      title:"Check for Myself",
+      subtitle:"Personal mode",
+      desc:"Find government schemes that you personally qualify for and save them to your profile.",
+      icon:"👤",
+      border:"#dda15e",
+      bg:"#fef4e0",
+    },
+    {
+      id:"helper",
+      title:"Help Someone Else",
+      subtitle:"Village Helper Mode",
+      desc:"For NGO workers, volunteers, teachers or CSC operators helping multiple people.",
+      icon:"🤝",
+      border:"#4caf6a",
+      bg:"#e8f5ed",
+      badge:"HELPER MODE",
+    },
+  ];
+
+  return (
+    <div style={{minHeight:"80vh",display:"flex",alignItems:"center",justifyContent:"center",padding:"32px 20px",background:"#fefae0"}}>
+      <div style={{width:"100%",maxWidth:520}}>
+        <div style={{textAlign:"center",marginBottom:26}}>
+          <div style={{width:64,height:64,borderRadius:"50%",margin:"0 auto 14px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,boxShadow:"0 8px 26px rgba(0,0,0,.18)"}}>
+            🏛️
+          </div>
+          <div style={{fontSize:24,fontWeight:800,color:"#283618",fontFamily:"'Baloo 2',sans-serif",marginBottom:4}}>YojanaGuru</div>
+          <div style={{fontSize:14,color:"#7a5c3a"}}>How do you want to use YojanaGuru today?</div>
+        </div>
+
+        <div style={{display:"flex",flexDirection:"column",gap:14}}>
+          {cards.map(card=>(
+            <button
+              key={card.id}
+              onClick={()=>onSelect(card.id)}
+              style={{
+                width:"100%",
+                textAlign:"left",
+                background:"#fff",
+                borderRadius:22,
+                padding:"18px 18px",
+                border:`2px solid ${card.border}`,
+                boxShadow:"0 6px 26px rgba(0,0,0,.10)",
+                cursor:"pointer",
+                transition:"transform .18s, box-shadow .18s"
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 10px 32px rgba(0,0,0,.16)";}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 6px 26px rgba(0,0,0,.10)";}}
+            >
+              <div style={{display:"flex",alignItems:"flex-start",gap:14}}>
+                <div style={{width:52,height:52,borderRadius:16,flexShrink:0,background:card.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,border:`2px solid ${card.border}`}}>
+                  {card.icon}
+                </div>
+                <div style={{flex:1}}>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:2}}>
+                    <span style={{fontSize:17,fontWeight:800,color:"#283618",fontFamily:"'Baloo 2',sans-serif"}}>{card.title}</span>
+                    {card.badge&&(
+                      <span style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:999,background:"#e8f5ed",color:"#2d6a3a",border:"1px solid #b5e1c2"}}>{card.badge}</span>
+                    )}
+                  </div>
+                  {card.subtitle&&<div style={{fontSize:12,color:card.border,fontWeight:600,marginBottom:4}}>{card.subtitle}</div>}
+                  <div style={{fontSize:13,color:"#7a5c3a",lineHeight:1.5}}>{card.desc}</div>
+                </div>
+                <div style={{fontSize:20,color:card.border,flexShrink:0,marginTop:4}}>→</div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <div style={{fontSize:11,color:"#a58a66",textAlign:"center",marginTop:18}}>
+          🔒 All data stays on your device • No account required
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
    NETA JI CHATBOT
    ============================================================ */
 const NETA_PROMPT = (lang) => `You are "Neta Ji", a warm Indian politician-style AI guide for YojanaGuru — a government scheme portal covering Tamil Nadu, Andhra Pradesh, Telangana and Central schemes. Speak in ${lang==="ta"?"Tamil":lang==="hi"?"Hindi":lang==="te"?"Telugu":"simple English"}.
@@ -1768,16 +1861,27 @@ export default function App() {
   const [matchedSchemes, setMatchedSchemes] = useState([]);
   const [userProfile, setUserProfile] = useState({});
   const { uploadedDocs, markUploaded, markRemoved, hasDoc, uploadedIds } = useDocStore();
+  const [loginMode, setLoginMode] = useState(null); // 'self' | 'helper'
 
   const handleResults = (schemes, profile) => {
     setMatchedSchemes(schemes);
     setUserProfile(profile||{});
   };
 
+  // Full-screen helper dashboard mode (no main nav/footer)
+  if (page === "helper") {
+    return (
+      <VillageHelperMode
+        onExit={() => setPage("home")}
+        schemes={SCHEMES}
+      />
+    );
+  }
+
   return (
     <div>
       <GlobalStyles/>
-      <NavBar page={page} setPage={setPage} lang={lang} setLang={setLang} user={user} setUser={setUser}/>
+      <NavBar page={page} setPage={setPage} lang={lang} setLang={setLang} user={user} setUser={setUser} setLoginMode={setLoginMode}/>
       <main style={{minHeight:"80vh"}} className="page-enter" key={page}>
         {page==="home"       && <HomePage setPage={setPage} lang={lang}/>}
         {page==="schemes"    && <SchemesPage lang={lang} setSelectedScheme={setSelectedScheme} uploadedIds={uploadedIds} profile={userProfile}/>}
@@ -1785,7 +1889,20 @@ export default function App() {
         {page==="benefits"   && <BenefitsPage lang={lang} matchedSchemes={matchedSchemes} profile={userProfile} setSelectedScheme={setSelectedScheme} setPage={setPage} uploadedIds={uploadedIds}/>}
         {page==="newSchemes" && <NewSchemesPage lang={lang} setSelectedScheme={setSelectedScheme}/>}
         {page==="uploadDocs" && <UploadDocsPage lang={lang} uploadedDocs={uploadedDocs} markUploaded={markUploaded} markRemoved={markRemoved}/>}
-        {page==="login"      && <LoginPage setUser={setUser} setPage={setPage} lang={lang}/>}
+        {page==="login"      && (
+          <LoginModePage
+            onSelect={(mode)=>{
+              if (mode === "self") {
+                setLoginMode("self");
+                setPage("loginSelf");
+              } else {
+                setLoginMode("helper");
+                setPage("helper");
+              }
+            }}
+          />
+        )}
+        {page==="loginSelf"  && <LoginPage setUser={setUser} setPage={setPage} lang={lang}/>}
       </main>
       <Footer/>
       <SchemeModal scheme={selectedScheme} lang={lang} onClose={()=>setSelectedScheme(null)} uploadedIds={uploadedIds}/>
