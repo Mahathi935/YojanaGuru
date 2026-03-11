@@ -844,7 +844,7 @@ function SchemeCard({ scheme, lang, onClick, eligResult }) {
           {eligResult.eligible ? t(lang,"eligible") : t(lang,"notEligible")}
         </div>
       )}
-      <div style={{width:54,height:54,borderRadius:"18px",background:`${scheme.color}22`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:12,marginTop:eligResult?20:0}}>
+      <div style={{width:92,height:54,borderRadius:"18px",background:`${scheme.color}22`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:12,marginTop:eligResult?20:0}}>
         <span style={{fontSize:11,fontWeight:600,color:scheme.color,textTransform:"uppercase"}}>{scheme.category}</span>
       </div>
       <h3
@@ -1023,7 +1023,7 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
   const totalRequired = DOC_TYPES.filter(d=>d.required).length;
 
   return (
-    <div style={{maxWidth:800,margin:"0 auto",padding:"30px 20px"}}>
+    <div style={{maxWidth:1100,margin:"0 auto",padding:"30px 20px"}}>
       {/* Header */}
       <div style={{background:"linear-gradient(135deg,#283618,#606c38)",borderRadius:20,padding:"28px 24px",marginBottom:28,color:"#fefae0",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:10}}></div>
@@ -1042,17 +1042,17 @@ function UploadDocsPage({ lang, uploadedDocs, markUploaded, markRemoved }) {
       </div>
 
       {/* Document grid */}
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:14}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:16}}>
         {DOC_TYPES.map(doc=>{
           const uploaded = !!uploadedDocs[doc.id];
           const isUploading = uploading===doc.id;
           return (
-            <div key={doc.id} style={{background:"#fff",borderRadius:16,padding:18,border:`2px solid ${uploaded?"#606c38":activeDoc===doc.id?"#bc6c25":"#fefae0"}`,transition:"all .2s",cursor:"pointer",position:"relative"}}
+            <div key={doc.id} style={{background:"#fff",borderRadius:18,padding:22,border:`2px solid ${uploaded?"#606c38":activeDoc===doc.id?"#bc6c25":"#fefae0"}`,transition:"all .2s",cursor:"pointer",position:"relative"}}
               onClick={()=>setActiveDoc(activeDoc===doc.id?null:doc.id)}>
               {uploaded&&<div style={{position:"absolute",top:10,right:10,background:"#606c38",color:"#fff",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700}}>✓</div>}
-              <div style={{fontSize:32,marginBottom:10}}>{doc.emoji}</div>
-              <div style={{fontSize:14,fontWeight:700,color:"#2d1a0e",marginBottom:4}}>{DOC_LABEL(doc,lang)}</div>
-              <div style={{fontSize:11,color:"#7a5c3a",marginBottom:12,lineHeight:1.4}}>{doc.hint}</div>
+              <div style={{fontSize:34,marginBottom:12}}>{doc.emoji}</div>
+              <div style={{fontSize:15,fontWeight:700,color:"#2d1a0e",marginBottom:6}}>{DOC_LABEL(doc,lang)}</div>
+              <div style={{fontSize:12,color:"#7a5c3a",marginBottom:14,lineHeight:1.5}}>{doc.hint}</div>
               {doc.required&&<div style={{fontSize:10,color:"#bc6c25",fontWeight:600,marginBottom:8}}>Required</div>}
 
               {isUploading ? (
@@ -1138,15 +1138,9 @@ function HomePage({ setPage, lang }) {
   return (
     <div>
       {/* Hero */}
-      <div style={{background:"linear-gradient(135deg,#283618 0%,#606c38 45%,#bc6c25 100%)",padding:"50px 20px 60px",position:"relative",overflow:"hidden"}}>
+      <div style={{background:"linear-gradient(135deg,#283618 0%,#606c38 45%,#bc6c25 100%)",padding:"70px 20px 80px",position:"relative",overflow:"hidden",minHeight:"320px"}}>
         <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(circle at 20% 80%,rgba(255,200,120,.12) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(200,255,150,.08) 0%,transparent 50%)",pointerEvents:"none"}}/>
         <div style={{maxWidth:700,margin:"0 auto",textAlign:"center",position:"relative"}}>
-          <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:14,marginBottom:20}}>
-            <div style={{width:64,height:64,background:"rgba(255,255,255,.15)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",animation:"float 3s ease infinite"}}>
-              <span style={{fontSize:34}}></span>
-            </div>
-            <div style={{background:"rgba(255,255,255,.15)",color:"rgba(255,255,255,.9)",padding:"5px 14px",borderRadius:30,fontSize:12,fontWeight:600,border:"1px solid rgba(255,255,255,.25)"}}>TN • AP • Telangana • Central Govt</div>
-          </div>
           <h1 style={{fontSize:"clamp(22px,4vw,38px)",fontWeight:800,color:"#fff",fontFamily:"'Baloo 2',sans-serif",lineHeight:1.25,marginBottom:14}}>
             {lang==="ta"?"அரசு திட்டங்களை எளிதாக கண்டுபிடியுங்கள்":lang==="hi"?"सरकारी योजनाएं आसानी से खोजें":lang==="te"?"ప్రభుత్వ పథకాలను సులభంగా కనుగొనండి":"Find Government Schemes Made For You"}
           </h1>
@@ -1189,7 +1183,8 @@ function HomePage({ setPage, lang }) {
       </div>
       {/* Voice tip */}
       <div style={{background:"linear-gradient(135deg,#fefae0,#dda15e)",margin:"0 20px 40px",borderRadius:16,padding:"18px 22px",display:"flex",alignItems:"center",gap:16,border:"1px solid #dda15e",maxWidth:1060,marginLeft:"auto",marginRight:"auto"}}>
-        <div style={{width:40,height:40,borderRadius:"50%",border:"2px solid #bc6c25",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,color:"#bc6c25",animation:"pulse 2.4s ease-in-out infinite"}}>
+        <div style={{width:40,height:40,borderRadius:"50%",border:"2px solid #bc6c25",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#bc6c25",animation:"pulse 2.4s ease-in-out infinite"}}>
+          🎤
         </div>
         <div>
           <div style={{fontSize:15,fontWeight:600,color:"#063940",marginBottom:3}}>
@@ -1525,7 +1520,7 @@ function NewSchemesPage({ lang, setSelectedScheme }) {
 }
 
 /* ============================================================
-   LOGIN PAGE
+   LOGIN PAGE (CITIZEN)
    ============================================================ */
 function LoginPage({ setUser, setPage, lang }) {
   const [mode, setMode] = useState("login");
@@ -1588,6 +1583,82 @@ function LoginPage({ setUser, setPage, lang }) {
         )}
         <div style={{textAlign:"center",marginTop:14}}>
           <button style={{background:"none",border:"none",color:"#aaa",fontSize:13,cursor:"pointer"}} onClick={()=>setPage("home")}>Continue without login →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   VOLUNTEER LOGIN PAGE (HELPER MODE)
+   Reuses the same layout as LoginPage but routes to helper mode
+   after verification.
+   ============================================================ */
+function HelperLoginPage({ setUser, setPage, lang }) {
+  const [mode, setMode] = useState("login");
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [otp, setOtp] = useState("");
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const handleSendOtp=()=>{ if(phone.length<10){alert("Enter valid 10-digit number");return;} setLoading(true); setTimeout(()=>{setLoading(false);setStep(2);},1200); };
+  const handleVerify=()=>{ setLoading(true); setTimeout(()=>{setUser({name:name||"Volunteer",phone,role:"helper"});setPage("helper");setLoading(false);},1000); };
+
+  return (
+    <div style={{minHeight:"80vh",display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+      <div style={{background:"#fff",borderRadius:24,padding:"34px 30px",width:"100%",maxWidth:400,boxShadow:"0 12px 50px rgba(0,0,0,.12)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:10,justifyContent:"center",marginBottom:18}}>
+          <div style={{fontSize:32,background:"linear-gradient(135deg,#f0d8b0,#e0b870)",borderRadius:"50%",width:52,height:52,display:"flex",alignItems:"center",justifyContent:"center"}}></div>
+          <div style={{fontSize:20,fontWeight:800,color:"#283618",fontFamily:"'Baloo 2',sans-serif"}}>YojanaGuru</div>
+        </div>
+        <h2 style={{fontSize:20,fontWeight:800,color:"#2d1a0e",textAlign:"center",marginBottom:5,fontFamily:"'Baloo 2',sans-serif"}}>
+          {lang==="ta"?"தன்னார்வலர் உள்நுழைவு":lang==="hi"?"स्वयंसेवक लॉगिन":lang==="te"?"సేవకుడు లాగిన్":"Volunteer Login / Sign Up"}
+        </h2>
+        <p style={{fontSize:13,color:"#7a5c3a",textAlign:"center",marginBottom:18}}>
+          Help villagers find schemes and track their applications
+        </p>
+        <div style={{display:"flex",background:"#f0e8dc",borderRadius:30,padding:4,marginBottom:20}}>
+          {["login","signup"].map(m=>(
+            <button key={m} style={{flex:1,padding:"9px",borderRadius:26,border:"none",fontSize:13,fontWeight:mode===m?700:500,color:"#283618",background:mode===m?"#fff":"transparent",boxShadow:mode===m?"0 2px 8px rgba(0,0,0,.1)":"none",transition:"all .2s"}} onClick={()=>setMode(m)}>
+              {m==="login"?"Login":"Sign Up"}
+            </button>
+          ))}
+        </div>
+        {mode==="signup"&&step===1&&(
+          <div style={{marginBottom:14}}>
+            <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Your Name</label>
+            <input style={{width:"100%",padding:"11px 13px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:14,outline:"none",background:"#faf5ee"}} value={name} onChange={e=>setName(e.target.value)} placeholder="Enter your name"/>
+          </div>
+        )}
+        {step===1&&(
+          <>
+            <div style={{marginBottom:14}}>
+              <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Mobile Number</label>
+              <div style={{display:"flex",gap:8}}>
+                <span style={{background:"#fefae0",border:"2px solid #dda15e",borderRadius:10,padding:"11px 13px",fontSize:13,fontWeight:600,color:"#283618",whiteSpace:"nowrap"}}>+91</span>
+                <input style={{flex:1,padding:"11px 13px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:14,outline:"none",background:"#faf5ee"}} value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,"").slice(0,10))} placeholder="10-digit number" type="tel"/>
+              </div>
+            </div>
+            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700,marginTop:4}} onClick={handleSendOtp} disabled={loading}>
+              {loading?<span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⏳</span>:"Send OTP"}
+            </button>
+          </>
+        )}
+        {step===2&&(
+          <>
+            <div style={{marginBottom:14}}>
+              <label style={{fontSize:13,fontWeight:600,color:"#283618",display:"block",marginBottom:5}}>Enter OTP</label>
+              <p style={{fontSize:11,color:"#7a5c3a",marginBottom:6}}>+91 {phone} (Demo: any 4 digits)</p>
+              <input style={{width:"100%",padding:"12px",borderRadius:10,border:"2px solid #e8d0b0",fontSize:22,outline:"none",background:"#faf5ee",textAlign:"center",letterSpacing:8}} value={otp} onChange={e=>setOtp(e.target.value.slice(0,4))} placeholder="• • • •" type="tel"/>
+            </div>
+            <button style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#bc6c25,#dda15e)",color:"#fff",border:"none",borderRadius:12,fontSize:15,fontWeight:700}} onClick={handleVerify} disabled={loading}>
+              {loading?<span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⏳</span>:"Verify & Continue to Helper Mode"}
+            </button>
+          </>
+        )}
+        <div style={{textAlign:"center",marginTop:14}}>
+          <button style={{background:"none",border:"none",color:"#aaa",fontSize:13,cursor:"pointer"}} onClick={()=>setPage("helper")}>Continue without login →</button>
         </div>
       </div>
     </div>
@@ -1856,7 +1927,6 @@ function Footer() {
           <span style={{fontSize:22}}></span>
           <div style={{fontSize:17,fontWeight:700,color:"#fff",fontFamily:"'Baloo 2',sans-serif"}}>YojanaGuru</div>
         </div>
-        <div style={{fontSize:13,marginBottom:6}}>Tamil Nadu • Andhra Pradesh • Telangana • Central Government Schemes</div>
         <div style={{fontSize:13,marginBottom:6}}>Voice Search • Read Aloud • Document Upload • 4 Languages</div>
         <div style={{fontSize:11,opacity:.4}}>Hackathon Demo. Verify scheme details at official government portals.</div>
       </div>
@@ -1949,12 +2019,13 @@ export default function App() {
                 setPage("loginSelf");
               } else {
                 setLoginMode("helper");
-                setPage("helper");
+                setPage("helperLogin");
               }
             }}
           />
         )}
-        {page==="loginSelf"  && <LoginPage setUser={setUser} setPage={setPage} lang={lang}/>}
+        {page==="loginSelf"    && <LoginPage setUser={setUser} setPage={setPage} lang={lang}/>}
+        {page==="helperLogin"  && <HelperLoginPage setUser={setUser} setPage={setPage} lang={lang}/>}
       </main>
       <Footer/>
       <SchemeModal scheme={selectedScheme} lang={lang} onClose={()=>setSelectedScheme(null)} uploadedIds={uploadedIds}/>

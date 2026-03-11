@@ -276,8 +276,8 @@ const PERSONA_ICONS = {
 };
 
 const CONFIDENCE_CONFIG = {
-  High:     { bg: "#dcfce7", text: "#15803d", border: "#86efac", label: "High Match" },
-  Possible: { bg: "#fef9c3", text: "#854d0e", border: "#fde047", label: "Possible Match" },
+  High:     { bg: "#f0f4ea", text: "#606c38", border: "#c9d8a5", label: "High Match" },
+  Possible: { bg: "#fff7df", text: "#bc6c25", border: "#f3d3a3", label: "Possible Match" },
   Low:      { bg: "#fee2e2", text: "#991b1b", border: "#fca5a5", label: "Partial Match" },
 };
 
@@ -322,26 +322,26 @@ function useBeneficiaries() {
    feature is visually consistent.
 ───────────────────────────────────────────── */
 const T = {
-  /* colours */
-  saffron:   "#e07b30",
-  saffronDk: "#b85f18",
-  saffronLt: "#fff4eb",
-  green:     "#2d7a4a",
-  greenLt:   "#e8f5ed",
-  slate:     "#1e293b",
-  slateM:    "#475569",
-  slateL:    "#94a3b8",
-  bg:        "#f8f5f0",
+  /* colours – align with YojanaGuru palette */
+  saffron:   "#dda15e",   // primary accent
+  saffronDk: "#bc6c25",   // deep accent
+  saffronLt: "#fefae0",   // soft cream highlight
+  green:     "#606c38",   // success/secondary
+  greenLt:   "#f0f4ea",   // light green wash based on 606c38
+  slate:     "#283618",   // primary text
+  slateM:    "#3b4a29",   // medium text
+  slateL:    "#8a9a6a",   // subtle text
+  bg:        "#fefae0",   // page background
   card:      "#ffffff",
-  border:    "#e8ddd0",
+  border:    "#e8d0b0",
   /* radii */
   r12: "12px", r16: "16px", r20: "20px", r8: "8px", r6: "6px",
   /* shadows */
-  shadow:    "0 4px 24px rgba(0,0,0,0.08)",
-  shadowLg:  "0 8px 40px rgba(0,0,0,0.13)",
-  /* fonts */
+  shadow:    "0 4px 24px rgba(0,0,0,0.12)",
+  shadowLg:  "0 8px 40px rgba(0,0,0,0.18)",
+  /* fonts – reuse main app fonts */
   display: "'Baloo 2', sans-serif",
-  body:    "'Noto Sans', sans-serif",
+  body:    "'Poppins', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
 };
 
 const globalCSS = `
@@ -356,11 +356,11 @@ const globalCSS = `
   .sp-pop      { animation: sp-pop     .35s cubic-bezier(.34,1.56,.64,1) both; }
   .sp-slidein  { animation: sp-slidein .35s cubic-bezier(.22,1,.36,1) both; }
   .sp-card:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.12) !important; }
-  .sp-btn-ghost:hover  { background: #fff4eb !important; }
+  .sp-btn-ghost:hover  { background: ${T.saffronLt} !important; }
   .sp-btn-solid:hover  { filter: brightness(1.08); }
-  .sp-input:focus { border-color: #e07b30 !important; box-shadow: 0 0 0 3px rgba(224,123,48,0.15) !important; }
-  .sp-radio:checked + .sp-radio-label { background:#fff4eb; border-color:#e07b30; }
-  .sp-bcard:hover { border-color:#e07b30 !important; }
+  .sp-input:focus { border-color: ${T.saffron} !important; box-shadow: 0 0 0 3px rgba(221,161,94,0.25) !important; }
+  .sp-radio:checked + .sp-radio-label { background:${T.saffronLt}; border-color:${T.saffron}; }
+  .sp-bcard:hover { border-color:${T.saffron} !important; }
   * { box-sizing: border-box; }
 `;
 
@@ -1356,26 +1356,26 @@ export function ModeSelector({ onSelect }) {
       <style>{globalCSS}</style>
       <FontLink/>
 
-      {/* logo */}
+      {/* logo – match YojanaGuru login branding */}
       <div className="sp-fadeUp" style={{ textAlign:"center", marginBottom:32 }}>
-        <div style={{ width:70, height:70, borderRadius:"50%", margin:"0 auto 16px",
+      <div style={{ width:70, height:70, borderRadius:"50%", margin:"0 auto 16px",
           background:`linear-gradient(135deg,${T.saffron},${T.saffronDk})`,
           display:"flex", alignItems:"center", justifyContent:"center",
           fontSize:34, boxShadow:`0 8px 30px ${T.saffron}40` }}>
           🏛️
         </div>
         <div style={{ fontFamily:T.display, fontSize:26, fontWeight:800, color:T.slate }}>
-          SchemePath
+          YojanaGuru
         </div>
         <div style={{ fontFamily:T.body, fontSize:14, color:T.slateM, marginTop:4 }}>
-          Government Scheme Discovery
+          Village Helper Mode for government schemes
         </div>
       </div>
 
       <div className="sp-fadeUp" style={{ width:"100%", maxWidth:440 }}>
         <div style={{ fontFamily:T.display, fontSize:20, fontWeight:800, color:T.slate,
           textAlign:"center", marginBottom:6 }}>
-          How are you using SchemePath today?
+          How do you want to use YojanaGuru today?
         </div>
         <div style={{ fontFamily:T.body, fontSize:14, color:T.slateM,
           textAlign:"center", marginBottom:24 }}>
@@ -1448,6 +1448,35 @@ export function VillageHelperMode({ onExit, schemes }) {
   // view: 'dashboard' | 'add' | 'detail'
   const [view, setView] = useState("dashboard");
   const [selected, setSelected] = useState(null);
+
+  // #region agent log
+  useEffect(() => {
+    try {
+      fetch('http://127.0.0.1:7427/ingest/87bdb28e-6c37-43c7-a4d7-6fff7ddf12aa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Debug-Session-Id': '81b0af',
+        },
+        body: JSON.stringify({
+          sessionId: '81b0af',
+          runId: 'palette-check',
+          hypothesisId: 'H1',
+          location: 'VillageHelperMode.jsx:1444',
+          message: 'VillageHelperMode palette tokens at mount',
+          data: {
+            saffron: T.saffron,
+            saffronDk: T.saffronDk,
+            green: T.green,
+            slate: T.slate,
+            bg: T.bg,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+    } catch {}
+  }, []);
+  // #endregion agent log
 
   const handleAdd = (profile) => {
     add(profile);
